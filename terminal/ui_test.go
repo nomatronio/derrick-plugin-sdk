@@ -45,7 +45,7 @@ func TestNamedValues_server(t *testing.T) {
 		{"DB Path", "data.db"},
 		{"gRPC Address", "127.0.0.1:1234"},
 		{"HTTP Address", "127.0.0.1:1235"},
-		{"URL Service", "api.alpha.waypoint.run:443 (account: token)"},
+		{"URL Service", "api.alpha.derrick.run:443 (account: token)"},
 	},
 		WithWriter(&buf),
 	)
@@ -55,7 +55,7 @@ func TestNamedValues_server(t *testing.T) {
        DB Path: data.db
   gRPC Address: 127.0.0.1:1234
   HTTP Address: 127.0.0.1:1235
-   URL Service: api.alpha.waypoint.run:443 (account: token)
+   URL Service: api.alpha.derrick.run:443 (account: token)
 
 `
 

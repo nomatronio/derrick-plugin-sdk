@@ -13,7 +13,7 @@ package component
 import (
 	"fmt"
 
-	proto "github.com/hashicorp/waypoint-plugin-sdk/proto/gen"
+	proto "github.com/nomatronio/derrick-plugin-sdk/proto/gen"
 )
 
 //go:generate stringer -type=Type -linecomment
@@ -142,7 +142,7 @@ type Destroyer interface {
 }
 
 // Exec is responsible for starting the exec plugin to allow a deployment
-// plugin to provide it's own exec functionality. By default, the waypoint exec
+// plugin to provide it's own exec functionality. By default, the derrick exec
 // functionality is achieved by creating a session on a long running instance of
 // a deployment. But if a platform plugin type does not creat any long running
 // instances, they can implement this interface and provide the exec functionality
@@ -183,7 +183,7 @@ type ExecResult struct {
 }
 
 // WorkspaceDestroyer is called when a workspace destroy operation is
-// performed (typically via the "waypoint destroy" CLI). This can be implemented
+// performed (typically via the "derrick destroy" CLI). This can be implemented
 // by any plugin.
 type WorkspaceDestroyer interface {
 	// DestroyWorkspaceFunc is called when a workspace destroy operation is performed.
@@ -322,16 +322,16 @@ type Template interface {
 
 // Generation can be implemented by Platform and PlatformReleaser to explicitly
 // specify a "generation" for a deploy or release. If this isn't implemented,
-// Waypoint generates a random new generation per operation and assumes
+// Derrick generates a random new generation per operation and assumes
 // immutable behavior.
 //
 // A "generation" specifies a unique identifier to the physical resources used
 // by that operation. Two  operations with the same generation are operating
-// on the same underlying resources. This is used by Waypoint to detect mutable
-// vs immutable  operations; if two operations change generations, then Waypoint
+// on the same underlying resources. This is used by Derrick to detect mutable
+// vs immutable  operations; if two operations change generations, then Derrick
 // knows the operation created new resources rather than mutating old ones.
 //
-// Waypoint uses this information to alter its behavior slightly. For example:
+// Derrick uses this information to alter its behavior slightly. For example:
 //
 //   - a user can only release a generation that isn't already released.
 //   - deployment URLs are identical for matching generations

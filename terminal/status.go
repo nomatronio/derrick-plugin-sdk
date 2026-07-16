@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/fatih/color"
-	"github.com/hashicorp/waypoint-plugin-sdk/internal/pkg/spinner"
+	"github.com/nomatronio/derrick-plugin-sdk/internal/pkg/spinner"
 	"github.com/morikuni/aec"
 )
 

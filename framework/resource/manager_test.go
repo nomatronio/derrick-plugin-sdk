@@ -8,11 +8,11 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/hashicorp/waypoint-plugin-sdk/internal/testproto"
-	pb "github.com/hashicorp/waypoint-plugin-sdk/proto/gen"
+	"github.com/nomatronio/derrick-plugin-sdk/internal/testproto"
+	pb "github.com/nomatronio/derrick-plugin-sdk/proto/gen"
 	"github.com/stretchr/testify/require"
 
-	"github.com/hashicorp/waypoint-plugin-sdk/component"
+	"github.com/nomatronio/derrick-plugin-sdk/component"
 )
 
 // types used for multiple resources
@@ -628,7 +628,7 @@ func TestStatus_Manager(t *testing.T) {
 // TestStatus_Manager_LoopRepro is a regression test for a loop discovered while
 // implementing StatusAll involving using Resource Manager with a single
 // Resource that reports a status.
-// See https://github.com/hashicorp/waypoint-plugin-sdk/pull/43 for additional
+// See https://github.com/nomatronio/derrick-plugin-sdk/pull/43 for additional
 // background.
 func TestStatus_Manager_LoopRepro(t *testing.T) {
 	require := require.New(t)

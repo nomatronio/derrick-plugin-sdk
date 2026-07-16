@@ -5,7 +5,7 @@ package mocks
 import (
 	context "context"
 
-	component "github.com/hashicorp/waypoint-plugin-sdk/component"
+	component "github.com/nomatronio/derrick-plugin-sdk/component"
 
 	mock "github.com/stretchr/testify/mock"
 )

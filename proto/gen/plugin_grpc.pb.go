@@ -37,7 +37,7 @@ func NewExecSessionServiceClient(cc grpc.ClientConnInterface) ExecSessionService
 
 func (c *execSessionServiceClient) Output(ctx context.Context, in *ExecSession_OutputRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ExecSessionService/Output", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ExecSessionService/Output", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -45,7 +45,7 @@ func (c *execSessionServiceClient) Output(ctx context.Context, in *ExecSession_O
 }
 
 func (c *execSessionServiceClient) Input(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (ExecSessionService_InputClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ExecSessionService_ServiceDesc.Streams[0], "/hashicorp.waypoint.sdk.ExecSessionService/Input", opts...)
+	stream, err := c.cc.NewStream(ctx, &ExecSessionService_ServiceDesc.Streams[0], "/hashicorp.derrick.sdk.ExecSessionService/Input", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -118,7 +118,7 @@ func _ExecSessionService_Output_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ExecSessionService/Output",
+		FullMethod: "/hashicorp.derrick.sdk.ExecSessionService/Output",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ExecSessionServiceServer).Output(ctx, req.(*ExecSession_OutputRequest))
@@ -151,7 +151,7 @@ func (x *execSessionServiceInputServer) Send(m *ExecSession_InputRequest) error 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ExecSessionService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "hashicorp.waypoint.sdk.ExecSessionService",
+	ServiceName: "hashicorp.derrick.sdk.ExecSessionService",
 	HandlerType: (*ExecSessionServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -185,7 +185,7 @@ func NewLogViewerClient(cc grpc.ClientConnInterface) LogViewerClient {
 }
 
 func (c *logViewerClient) NextLogBatch(ctx context.Context, opts ...grpc.CallOption) (LogViewer_NextLogBatchClient, error) {
-	stream, err := c.cc.NewStream(ctx, &LogViewer_ServiceDesc.Streams[0], "/hashicorp.waypoint.sdk.LogViewer/NextLogBatch", opts...)
+	stream, err := c.cc.NewStream(ctx, &LogViewer_ServiceDesc.Streams[0], "/hashicorp.derrick.sdk.LogViewer/NextLogBatch", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -276,7 +276,7 @@ func (x *logViewerNextLogBatchServer) Recv() (*Logs_NextBatchResp, error) {
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var LogViewer_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "hashicorp.waypoint.sdk.LogViewer",
+	ServiceName: "hashicorp.derrick.sdk.LogViewer",
 	HandlerType: (*LogViewerServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
@@ -308,7 +308,7 @@ func NewTerminalUIServiceClient(cc grpc.ClientConnInterface) TerminalUIServiceCl
 
 func (c *terminalUIServiceClient) Output(ctx context.Context, in *TerminalUI_OutputRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.TerminalUIService/Output", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.TerminalUIService/Output", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -316,7 +316,7 @@ func (c *terminalUIServiceClient) Output(ctx context.Context, in *TerminalUI_Out
 }
 
 func (c *terminalUIServiceClient) Events(ctx context.Context, opts ...grpc.CallOption) (TerminalUIService_EventsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &TerminalUIService_ServiceDesc.Streams[0], "/hashicorp.waypoint.sdk.TerminalUIService/Events", opts...)
+	stream, err := c.cc.NewStream(ctx, &TerminalUIService_ServiceDesc.Streams[0], "/hashicorp.derrick.sdk.TerminalUIService/Events", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -348,7 +348,7 @@ func (x *terminalUIServiceEventsClient) Recv() (*TerminalUI_Response, error) {
 
 func (c *terminalUIServiceClient) IsInteractive(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*TerminalUI_IsInteractiveResponse, error) {
 	out := new(TerminalUI_IsInteractiveResponse)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.TerminalUIService/IsInteractive", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.TerminalUIService/IsInteractive", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -401,7 +401,7 @@ func _TerminalUIService_Output_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.TerminalUIService/Output",
+		FullMethod: "/hashicorp.derrick.sdk.TerminalUIService/Output",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TerminalUIServiceServer).Output(ctx, req.(*TerminalUI_OutputRequest))
@@ -445,7 +445,7 @@ func _TerminalUIService_IsInteractive_Handler(srv interface{}, ctx context.Conte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.TerminalUIService/IsInteractive",
+		FullMethod: "/hashicorp.derrick.sdk.TerminalUIService/IsInteractive",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TerminalUIServiceServer).IsInteractive(ctx, req.(*emptypb.Empty))
@@ -457,7 +457,7 @@ func _TerminalUIService_IsInteractive_Handler(srv interface{}, ctx context.Conte
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var TerminalUIService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "hashicorp.waypoint.sdk.TerminalUIService",
+	ServiceName: "hashicorp.derrick.sdk.TerminalUIService",
 	HandlerType: (*TerminalUIServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -500,7 +500,7 @@ func NewMapperClient(cc grpc.ClientConnInterface) MapperClient {
 
 func (c *mapperClient) ListMappers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Map_ListResponse, error) {
 	out := new(Map_ListResponse)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Mapper/ListMappers", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Mapper/ListMappers", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -509,7 +509,7 @@ func (c *mapperClient) ListMappers(ctx context.Context, in *emptypb.Empty, opts 
 
 func (c *mapperClient) Map(ctx context.Context, in *Map_Request, opts ...grpc.CallOption) (*Map_Response, error) {
 	out := new(Map_Response)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Mapper/Map", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Mapper/Map", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -560,7 +560,7 @@ func _Mapper_ListMappers_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Mapper/ListMappers",
+		FullMethod: "/hashicorp.derrick.sdk.Mapper/ListMappers",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MapperServer).ListMappers(ctx, req.(*emptypb.Empty))
@@ -578,7 +578,7 @@ func _Mapper_Map_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Mapper/Map",
+		FullMethod: "/hashicorp.derrick.sdk.Mapper/Map",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MapperServer).Map(ctx, req.(*Map_Request))
@@ -590,7 +590,7 @@ func _Mapper_Map_Handler(srv interface{}, ctx context.Context, dec func(interfac
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Mapper_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "hashicorp.waypoint.sdk.Mapper",
+	ServiceName: "hashicorp.derrick.sdk.Mapper",
 	HandlerType: (*MapperServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -634,7 +634,7 @@ func NewBuilderClient(cc grpc.ClientConnInterface) BuilderClient {
 
 func (c *builderClient) IsAuthenticator(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ImplementsResp, error) {
 	out := new(ImplementsResp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Builder/IsAuthenticator", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Builder/IsAuthenticator", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -643,7 +643,7 @@ func (c *builderClient) IsAuthenticator(ctx context.Context, in *emptypb.Empty, 
 
 func (c *builderClient) Auth(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*Auth_AuthResponse, error) {
 	out := new(Auth_AuthResponse)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Builder/Auth", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Builder/Auth", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -652,7 +652,7 @@ func (c *builderClient) Auth(ctx context.Context, in *FuncSpec_Args, opts ...grp
 
 func (c *builderClient) AuthSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Builder/AuthSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Builder/AuthSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -661,7 +661,7 @@ func (c *builderClient) AuthSpec(ctx context.Context, in *emptypb.Empty, opts ..
 
 func (c *builderClient) ValidateAuth(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Builder/ValidateAuth", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Builder/ValidateAuth", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -670,7 +670,7 @@ func (c *builderClient) ValidateAuth(ctx context.Context, in *FuncSpec_Args, opt
 
 func (c *builderClient) ValidateAuthSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Builder/ValidateAuthSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Builder/ValidateAuthSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -679,7 +679,7 @@ func (c *builderClient) ValidateAuthSpec(ctx context.Context, in *emptypb.Empty,
 
 func (c *builderClient) ConfigStruct(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Config_StructResp, error) {
 	out := new(Config_StructResp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Builder/ConfigStruct", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Builder/ConfigStruct", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -688,7 +688,7 @@ func (c *builderClient) ConfigStruct(ctx context.Context, in *emptypb.Empty, opt
 
 func (c *builderClient) Configure(ctx context.Context, in *Config_ConfigureRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Builder/Configure", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Builder/Configure", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -697,7 +697,7 @@ func (c *builderClient) Configure(ctx context.Context, in *Config_ConfigureReque
 
 func (c *builderClient) Documentation(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Config_Documentation, error) {
 	out := new(Config_Documentation)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Builder/Documentation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Builder/Documentation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -706,7 +706,7 @@ func (c *builderClient) Documentation(ctx context.Context, in *emptypb.Empty, op
 
 func (c *builderClient) BuildSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Builder/BuildSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Builder/BuildSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -715,7 +715,7 @@ func (c *builderClient) BuildSpec(ctx context.Context, in *emptypb.Empty, opts .
 
 func (c *builderClient) Build(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*Build_Resp, error) {
 	out := new(Build_Resp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Builder/Build", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Builder/Build", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -724,7 +724,7 @@ func (c *builderClient) Build(ctx context.Context, in *FuncSpec_Args, opts ...gr
 
 func (c *builderClient) BuildODR(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*Build_Resp, error) {
 	out := new(Build_Resp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Builder/BuildODR", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Builder/BuildODR", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -733,7 +733,7 @@ func (c *builderClient) BuildODR(ctx context.Context, in *FuncSpec_Args, opts ..
 
 func (c *builderClient) BuildSpecODR(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Builder/BuildSpecODR", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Builder/BuildSpecODR", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -822,7 +822,7 @@ func _Builder_IsAuthenticator_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Builder/IsAuthenticator",
+		FullMethod: "/hashicorp.derrick.sdk.Builder/IsAuthenticator",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BuilderServer).IsAuthenticator(ctx, req.(*emptypb.Empty))
@@ -840,7 +840,7 @@ func _Builder_Auth_Handler(srv interface{}, ctx context.Context, dec func(interf
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Builder/Auth",
+		FullMethod: "/hashicorp.derrick.sdk.Builder/Auth",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BuilderServer).Auth(ctx, req.(*FuncSpec_Args))
@@ -858,7 +858,7 @@ func _Builder_AuthSpec_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Builder/AuthSpec",
+		FullMethod: "/hashicorp.derrick.sdk.Builder/AuthSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BuilderServer).AuthSpec(ctx, req.(*emptypb.Empty))
@@ -876,7 +876,7 @@ func _Builder_ValidateAuth_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Builder/ValidateAuth",
+		FullMethod: "/hashicorp.derrick.sdk.Builder/ValidateAuth",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BuilderServer).ValidateAuth(ctx, req.(*FuncSpec_Args))
@@ -894,7 +894,7 @@ func _Builder_ValidateAuthSpec_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Builder/ValidateAuthSpec",
+		FullMethod: "/hashicorp.derrick.sdk.Builder/ValidateAuthSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BuilderServer).ValidateAuthSpec(ctx, req.(*emptypb.Empty))
@@ -912,7 +912,7 @@ func _Builder_ConfigStruct_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Builder/ConfigStruct",
+		FullMethod: "/hashicorp.derrick.sdk.Builder/ConfigStruct",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BuilderServer).ConfigStruct(ctx, req.(*emptypb.Empty))
@@ -930,7 +930,7 @@ func _Builder_Configure_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Builder/Configure",
+		FullMethod: "/hashicorp.derrick.sdk.Builder/Configure",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BuilderServer).Configure(ctx, req.(*Config_ConfigureRequest))
@@ -948,7 +948,7 @@ func _Builder_Documentation_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Builder/Documentation",
+		FullMethod: "/hashicorp.derrick.sdk.Builder/Documentation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BuilderServer).Documentation(ctx, req.(*emptypb.Empty))
@@ -966,7 +966,7 @@ func _Builder_BuildSpec_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Builder/BuildSpec",
+		FullMethod: "/hashicorp.derrick.sdk.Builder/BuildSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BuilderServer).BuildSpec(ctx, req.(*emptypb.Empty))
@@ -984,7 +984,7 @@ func _Builder_Build_Handler(srv interface{}, ctx context.Context, dec func(inter
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Builder/Build",
+		FullMethod: "/hashicorp.derrick.sdk.Builder/Build",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BuilderServer).Build(ctx, req.(*FuncSpec_Args))
@@ -1002,7 +1002,7 @@ func _Builder_BuildODR_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Builder/BuildODR",
+		FullMethod: "/hashicorp.derrick.sdk.Builder/BuildODR",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BuilderServer).BuildODR(ctx, req.(*FuncSpec_Args))
@@ -1020,7 +1020,7 @@ func _Builder_BuildSpecODR_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Builder/BuildSpecODR",
+		FullMethod: "/hashicorp.derrick.sdk.Builder/BuildSpecODR",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BuilderServer).BuildSpecODR(ctx, req.(*emptypb.Empty))
@@ -1032,7 +1032,7 @@ func _Builder_BuildSpecODR_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Builder_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "hashicorp.waypoint.sdk.Builder",
+	ServiceName: "hashicorp.derrick.sdk.Builder",
 	HandlerType: (*BuilderServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -1142,7 +1142,7 @@ func NewPlatformClient(cc grpc.ClientConnInterface) PlatformClient {
 
 func (c *platformClient) IsAuthenticator(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ImplementsResp, error) {
 	out := new(ImplementsResp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/IsAuthenticator", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/IsAuthenticator", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1151,7 +1151,7 @@ func (c *platformClient) IsAuthenticator(ctx context.Context, in *emptypb.Empty,
 
 func (c *platformClient) Auth(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*Auth_AuthResponse, error) {
 	out := new(Auth_AuthResponse)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/Auth", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/Auth", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1160,7 +1160,7 @@ func (c *platformClient) Auth(ctx context.Context, in *FuncSpec_Args, opts ...gr
 
 func (c *platformClient) AuthSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/AuthSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/AuthSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1169,7 +1169,7 @@ func (c *platformClient) AuthSpec(ctx context.Context, in *emptypb.Empty, opts .
 
 func (c *platformClient) ValidateAuth(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/ValidateAuth", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/ValidateAuth", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1178,7 +1178,7 @@ func (c *platformClient) ValidateAuth(ctx context.Context, in *FuncSpec_Args, op
 
 func (c *platformClient) ValidateAuthSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/ValidateAuthSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/ValidateAuthSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1187,7 +1187,7 @@ func (c *platformClient) ValidateAuthSpec(ctx context.Context, in *emptypb.Empty
 
 func (c *platformClient) ConfigStruct(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Config_StructResp, error) {
 	out := new(Config_StructResp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/ConfigStruct", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/ConfigStruct", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1196,7 +1196,7 @@ func (c *platformClient) ConfigStruct(ctx context.Context, in *emptypb.Empty, op
 
 func (c *platformClient) Configure(ctx context.Context, in *Config_ConfigureRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/Configure", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/Configure", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1205,7 +1205,7 @@ func (c *platformClient) Configure(ctx context.Context, in *Config_ConfigureRequ
 
 func (c *platformClient) Documentation(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Config_Documentation, error) {
 	out := new(Config_Documentation)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/Documentation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/Documentation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1214,7 +1214,7 @@ func (c *platformClient) Documentation(ctx context.Context, in *emptypb.Empty, o
 
 func (c *platformClient) DeploySpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/DeploySpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/DeploySpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1223,7 +1223,7 @@ func (c *platformClient) DeploySpec(ctx context.Context, in *emptypb.Empty, opts
 
 func (c *platformClient) Deploy(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*Deploy_Resp, error) {
 	out := new(Deploy_Resp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/Deploy", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/Deploy", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1232,7 +1232,7 @@ func (c *platformClient) Deploy(ctx context.Context, in *FuncSpec_Args, opts ...
 
 func (c *platformClient) DefaultReleaserSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/DefaultReleaserSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/DefaultReleaserSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1241,7 +1241,7 @@ func (c *platformClient) DefaultReleaserSpec(ctx context.Context, in *emptypb.Em
 
 func (c *platformClient) DefaultReleaser(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*DefaultReleaser_Resp, error) {
 	out := new(DefaultReleaser_Resp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/DefaultReleaser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/DefaultReleaser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1250,7 +1250,7 @@ func (c *platformClient) DefaultReleaser(ctx context.Context, in *FuncSpec_Args,
 
 func (c *platformClient) IsDestroyer(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ImplementsResp, error) {
 	out := new(ImplementsResp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/IsDestroyer", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/IsDestroyer", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1259,7 +1259,7 @@ func (c *platformClient) IsDestroyer(ctx context.Context, in *emptypb.Empty, opt
 
 func (c *platformClient) DestroySpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/DestroySpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/DestroySpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1268,7 +1268,7 @@ func (c *platformClient) DestroySpec(ctx context.Context, in *emptypb.Empty, opt
 
 func (c *platformClient) Destroy(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*Destroy_Resp, error) {
 	out := new(Destroy_Resp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/Destroy", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/Destroy", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1277,7 +1277,7 @@ func (c *platformClient) Destroy(ctx context.Context, in *FuncSpec_Args, opts ..
 
 func (c *platformClient) IsWorkspaceDestroyer(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ImplementsResp, error) {
 	out := new(ImplementsResp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/IsWorkspaceDestroyer", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/IsWorkspaceDestroyer", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1286,7 +1286,7 @@ func (c *platformClient) IsWorkspaceDestroyer(ctx context.Context, in *emptypb.E
 
 func (c *platformClient) DestroyWorkspaceSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/DestroyWorkspaceSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/DestroyWorkspaceSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1295,7 +1295,7 @@ func (c *platformClient) DestroyWorkspaceSpec(ctx context.Context, in *emptypb.E
 
 func (c *platformClient) DestroyWorkspace(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/DestroyWorkspace", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/DestroyWorkspace", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1304,7 +1304,7 @@ func (c *platformClient) DestroyWorkspace(ctx context.Context, in *FuncSpec_Args
 
 func (c *platformClient) IsExecer(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ImplementsResp, error) {
 	out := new(ImplementsResp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/IsExecer", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/IsExecer", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1313,7 +1313,7 @@ func (c *platformClient) IsExecer(ctx context.Context, in *emptypb.Empty, opts .
 
 func (c *platformClient) ExecSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/ExecSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/ExecSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1322,7 +1322,7 @@ func (c *platformClient) ExecSpec(ctx context.Context, in *emptypb.Empty, opts .
 
 func (c *platformClient) Exec(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*ExecResult, error) {
 	out := new(ExecResult)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/Exec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/Exec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1331,7 +1331,7 @@ func (c *platformClient) Exec(ctx context.Context, in *FuncSpec_Args, opts ...gr
 
 func (c *platformClient) IsLogPlatform(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ImplementsResp, error) {
 	out := new(ImplementsResp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/IsLogPlatform", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/IsLogPlatform", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1340,7 +1340,7 @@ func (c *platformClient) IsLogPlatform(ctx context.Context, in *emptypb.Empty, o
 
 func (c *platformClient) LogsSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/LogsSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/LogsSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1349,7 +1349,7 @@ func (c *platformClient) LogsSpec(ctx context.Context, in *emptypb.Empty, opts .
 
 func (c *platformClient) Logs(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/Logs", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/Logs", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1358,7 +1358,7 @@ func (c *platformClient) Logs(ctx context.Context, in *FuncSpec_Args, opts ...gr
 
 func (c *platformClient) IsGeneration(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ImplementsResp, error) {
 	out := new(ImplementsResp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/IsGeneration", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/IsGeneration", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1367,7 +1367,7 @@ func (c *platformClient) IsGeneration(ctx context.Context, in *emptypb.Empty, op
 
 func (c *platformClient) GenerationSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/GenerationSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/GenerationSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1376,7 +1376,7 @@ func (c *platformClient) GenerationSpec(ctx context.Context, in *emptypb.Empty, 
 
 func (c *platformClient) Generation(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*Generation_Resp, error) {
 	out := new(Generation_Resp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/Generation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/Generation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1385,7 +1385,7 @@ func (c *platformClient) Generation(ctx context.Context, in *FuncSpec_Args, opts
 
 func (c *platformClient) IsStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ImplementsResp, error) {
 	out := new(ImplementsResp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/IsStatus", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/IsStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1394,7 +1394,7 @@ func (c *platformClient) IsStatus(ctx context.Context, in *emptypb.Empty, opts .
 
 func (c *platformClient) StatusSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/StatusSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/StatusSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1403,7 +1403,7 @@ func (c *platformClient) StatusSpec(ctx context.Context, in *emptypb.Empty, opts
 
 func (c *platformClient) Status(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*StatusReport, error) {
 	out := new(StatusReport)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Platform/Status", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Platform/Status", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1572,7 +1572,7 @@ func _Platform_IsAuthenticator_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/IsAuthenticator",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/IsAuthenticator",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).IsAuthenticator(ctx, req.(*emptypb.Empty))
@@ -1590,7 +1590,7 @@ func _Platform_Auth_Handler(srv interface{}, ctx context.Context, dec func(inter
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/Auth",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/Auth",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).Auth(ctx, req.(*FuncSpec_Args))
@@ -1608,7 +1608,7 @@ func _Platform_AuthSpec_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/AuthSpec",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/AuthSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).AuthSpec(ctx, req.(*emptypb.Empty))
@@ -1626,7 +1626,7 @@ func _Platform_ValidateAuth_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/ValidateAuth",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/ValidateAuth",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).ValidateAuth(ctx, req.(*FuncSpec_Args))
@@ -1644,7 +1644,7 @@ func _Platform_ValidateAuthSpec_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/ValidateAuthSpec",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/ValidateAuthSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).ValidateAuthSpec(ctx, req.(*emptypb.Empty))
@@ -1662,7 +1662,7 @@ func _Platform_ConfigStruct_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/ConfigStruct",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/ConfigStruct",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).ConfigStruct(ctx, req.(*emptypb.Empty))
@@ -1680,7 +1680,7 @@ func _Platform_Configure_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/Configure",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/Configure",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).Configure(ctx, req.(*Config_ConfigureRequest))
@@ -1698,7 +1698,7 @@ func _Platform_Documentation_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/Documentation",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/Documentation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).Documentation(ctx, req.(*emptypb.Empty))
@@ -1716,7 +1716,7 @@ func _Platform_DeploySpec_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/DeploySpec",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/DeploySpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).DeploySpec(ctx, req.(*emptypb.Empty))
@@ -1734,7 +1734,7 @@ func _Platform_Deploy_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/Deploy",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/Deploy",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).Deploy(ctx, req.(*FuncSpec_Args))
@@ -1752,7 +1752,7 @@ func _Platform_DefaultReleaserSpec_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/DefaultReleaserSpec",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/DefaultReleaserSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).DefaultReleaserSpec(ctx, req.(*emptypb.Empty))
@@ -1770,7 +1770,7 @@ func _Platform_DefaultReleaser_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/DefaultReleaser",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/DefaultReleaser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).DefaultReleaser(ctx, req.(*FuncSpec_Args))
@@ -1788,7 +1788,7 @@ func _Platform_IsDestroyer_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/IsDestroyer",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/IsDestroyer",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).IsDestroyer(ctx, req.(*emptypb.Empty))
@@ -1806,7 +1806,7 @@ func _Platform_DestroySpec_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/DestroySpec",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/DestroySpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).DestroySpec(ctx, req.(*emptypb.Empty))
@@ -1824,7 +1824,7 @@ func _Platform_Destroy_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/Destroy",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/Destroy",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).Destroy(ctx, req.(*FuncSpec_Args))
@@ -1842,7 +1842,7 @@ func _Platform_IsWorkspaceDestroyer_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/IsWorkspaceDestroyer",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/IsWorkspaceDestroyer",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).IsWorkspaceDestroyer(ctx, req.(*emptypb.Empty))
@@ -1860,7 +1860,7 @@ func _Platform_DestroyWorkspaceSpec_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/DestroyWorkspaceSpec",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/DestroyWorkspaceSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).DestroyWorkspaceSpec(ctx, req.(*emptypb.Empty))
@@ -1878,7 +1878,7 @@ func _Platform_DestroyWorkspace_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/DestroyWorkspace",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/DestroyWorkspace",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).DestroyWorkspace(ctx, req.(*FuncSpec_Args))
@@ -1896,7 +1896,7 @@ func _Platform_IsExecer_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/IsExecer",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/IsExecer",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).IsExecer(ctx, req.(*emptypb.Empty))
@@ -1914,7 +1914,7 @@ func _Platform_ExecSpec_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/ExecSpec",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/ExecSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).ExecSpec(ctx, req.(*emptypb.Empty))
@@ -1932,7 +1932,7 @@ func _Platform_Exec_Handler(srv interface{}, ctx context.Context, dec func(inter
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/Exec",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/Exec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).Exec(ctx, req.(*FuncSpec_Args))
@@ -1950,7 +1950,7 @@ func _Platform_IsLogPlatform_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/IsLogPlatform",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/IsLogPlatform",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).IsLogPlatform(ctx, req.(*emptypb.Empty))
@@ -1968,7 +1968,7 @@ func _Platform_LogsSpec_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/LogsSpec",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/LogsSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).LogsSpec(ctx, req.(*emptypb.Empty))
@@ -1986,7 +1986,7 @@ func _Platform_Logs_Handler(srv interface{}, ctx context.Context, dec func(inter
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/Logs",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/Logs",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).Logs(ctx, req.(*FuncSpec_Args))
@@ -2004,7 +2004,7 @@ func _Platform_IsGeneration_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/IsGeneration",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/IsGeneration",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).IsGeneration(ctx, req.(*emptypb.Empty))
@@ -2022,7 +2022,7 @@ func _Platform_GenerationSpec_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/GenerationSpec",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/GenerationSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).GenerationSpec(ctx, req.(*emptypb.Empty))
@@ -2040,7 +2040,7 @@ func _Platform_Generation_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/Generation",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/Generation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).Generation(ctx, req.(*FuncSpec_Args))
@@ -2058,7 +2058,7 @@ func _Platform_IsStatus_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/IsStatus",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/IsStatus",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).IsStatus(ctx, req.(*emptypb.Empty))
@@ -2076,7 +2076,7 @@ func _Platform_StatusSpec_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/StatusSpec",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/StatusSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).StatusSpec(ctx, req.(*emptypb.Empty))
@@ -2094,7 +2094,7 @@ func _Platform_Status_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Platform/Status",
+		FullMethod: "/hashicorp.derrick.sdk.Platform/Status",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlatformServer).Status(ctx, req.(*FuncSpec_Args))
@@ -2106,7 +2106,7 @@ func _Platform_Status_Handler(srv interface{}, ctx context.Context, dec func(int
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Platform_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "hashicorp.waypoint.sdk.Platform",
+	ServiceName: "hashicorp.derrick.sdk.Platform",
 	HandlerType: (*PlatformServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -2264,7 +2264,7 @@ func NewRegistryClient(cc grpc.ClientConnInterface) RegistryClient {
 
 func (c *registryClient) IsAuthenticator(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ImplementsResp, error) {
 	out := new(ImplementsResp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Registry/IsAuthenticator", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Registry/IsAuthenticator", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2273,7 +2273,7 @@ func (c *registryClient) IsAuthenticator(ctx context.Context, in *emptypb.Empty,
 
 func (c *registryClient) Auth(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*Auth_AuthResponse, error) {
 	out := new(Auth_AuthResponse)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Registry/Auth", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Registry/Auth", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2282,7 +2282,7 @@ func (c *registryClient) Auth(ctx context.Context, in *FuncSpec_Args, opts ...gr
 
 func (c *registryClient) AuthSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Registry/AuthSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Registry/AuthSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2291,7 +2291,7 @@ func (c *registryClient) AuthSpec(ctx context.Context, in *emptypb.Empty, opts .
 
 func (c *registryClient) ValidateAuth(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Registry/ValidateAuth", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Registry/ValidateAuth", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2300,7 +2300,7 @@ func (c *registryClient) ValidateAuth(ctx context.Context, in *FuncSpec_Args, op
 
 func (c *registryClient) ValidateAuthSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Registry/ValidateAuthSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Registry/ValidateAuthSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2309,7 +2309,7 @@ func (c *registryClient) ValidateAuthSpec(ctx context.Context, in *emptypb.Empty
 
 func (c *registryClient) ConfigStruct(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Config_StructResp, error) {
 	out := new(Config_StructResp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Registry/ConfigStruct", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Registry/ConfigStruct", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2318,7 +2318,7 @@ func (c *registryClient) ConfigStruct(ctx context.Context, in *emptypb.Empty, op
 
 func (c *registryClient) Configure(ctx context.Context, in *Config_ConfigureRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Registry/Configure", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Registry/Configure", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2327,7 +2327,7 @@ func (c *registryClient) Configure(ctx context.Context, in *Config_ConfigureRequ
 
 func (c *registryClient) Documentation(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Config_Documentation, error) {
 	out := new(Config_Documentation)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Registry/Documentation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Registry/Documentation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2336,7 +2336,7 @@ func (c *registryClient) Documentation(ctx context.Context, in *emptypb.Empty, o
 
 func (c *registryClient) PushSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Registry/PushSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Registry/PushSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2345,7 +2345,7 @@ func (c *registryClient) PushSpec(ctx context.Context, in *emptypb.Empty, opts .
 
 func (c *registryClient) Push(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*Push_Resp, error) {
 	out := new(Push_Resp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Registry/Push", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Registry/Push", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2354,7 +2354,7 @@ func (c *registryClient) Push(ctx context.Context, in *FuncSpec_Args, opts ...gr
 
 func (c *registryClient) AccessSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Registry/AccessSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Registry/AccessSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2363,7 +2363,7 @@ func (c *registryClient) AccessSpec(ctx context.Context, in *emptypb.Empty, opts
 
 func (c *registryClient) Access(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*Access_Resp, error) {
 	out := new(Access_Resp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.Registry/Access", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.Registry/Access", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2454,7 +2454,7 @@ func _Registry_IsAuthenticator_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Registry/IsAuthenticator",
+		FullMethod: "/hashicorp.derrick.sdk.Registry/IsAuthenticator",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RegistryServer).IsAuthenticator(ctx, req.(*emptypb.Empty))
@@ -2472,7 +2472,7 @@ func _Registry_Auth_Handler(srv interface{}, ctx context.Context, dec func(inter
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Registry/Auth",
+		FullMethod: "/hashicorp.derrick.sdk.Registry/Auth",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RegistryServer).Auth(ctx, req.(*FuncSpec_Args))
@@ -2490,7 +2490,7 @@ func _Registry_AuthSpec_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Registry/AuthSpec",
+		FullMethod: "/hashicorp.derrick.sdk.Registry/AuthSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RegistryServer).AuthSpec(ctx, req.(*emptypb.Empty))
@@ -2508,7 +2508,7 @@ func _Registry_ValidateAuth_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Registry/ValidateAuth",
+		FullMethod: "/hashicorp.derrick.sdk.Registry/ValidateAuth",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RegistryServer).ValidateAuth(ctx, req.(*FuncSpec_Args))
@@ -2526,7 +2526,7 @@ func _Registry_ValidateAuthSpec_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Registry/ValidateAuthSpec",
+		FullMethod: "/hashicorp.derrick.sdk.Registry/ValidateAuthSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RegistryServer).ValidateAuthSpec(ctx, req.(*emptypb.Empty))
@@ -2544,7 +2544,7 @@ func _Registry_ConfigStruct_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Registry/ConfigStruct",
+		FullMethod: "/hashicorp.derrick.sdk.Registry/ConfigStruct",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RegistryServer).ConfigStruct(ctx, req.(*emptypb.Empty))
@@ -2562,7 +2562,7 @@ func _Registry_Configure_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Registry/Configure",
+		FullMethod: "/hashicorp.derrick.sdk.Registry/Configure",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RegistryServer).Configure(ctx, req.(*Config_ConfigureRequest))
@@ -2580,7 +2580,7 @@ func _Registry_Documentation_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Registry/Documentation",
+		FullMethod: "/hashicorp.derrick.sdk.Registry/Documentation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RegistryServer).Documentation(ctx, req.(*emptypb.Empty))
@@ -2598,7 +2598,7 @@ func _Registry_PushSpec_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Registry/PushSpec",
+		FullMethod: "/hashicorp.derrick.sdk.Registry/PushSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RegistryServer).PushSpec(ctx, req.(*emptypb.Empty))
@@ -2616,7 +2616,7 @@ func _Registry_Push_Handler(srv interface{}, ctx context.Context, dec func(inter
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Registry/Push",
+		FullMethod: "/hashicorp.derrick.sdk.Registry/Push",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RegistryServer).Push(ctx, req.(*FuncSpec_Args))
@@ -2634,7 +2634,7 @@ func _Registry_AccessSpec_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Registry/AccessSpec",
+		FullMethod: "/hashicorp.derrick.sdk.Registry/AccessSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RegistryServer).AccessSpec(ctx, req.(*emptypb.Empty))
@@ -2652,7 +2652,7 @@ func _Registry_Access_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.Registry/Access",
+		FullMethod: "/hashicorp.derrick.sdk.Registry/Access",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RegistryServer).Access(ctx, req.(*FuncSpec_Args))
@@ -2664,7 +2664,7 @@ func _Registry_Access_Handler(srv interface{}, ctx context.Context, dec func(int
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Registry_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "hashicorp.waypoint.sdk.Registry",
+	ServiceName: "hashicorp.derrick.sdk.Registry",
 	HandlerType: (*RegistryServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -2758,7 +2758,7 @@ func NewReleaseManagerClient(cc grpc.ClientConnInterface) ReleaseManagerClient {
 
 func (c *releaseManagerClient) IsAuthenticator(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ImplementsResp, error) {
 	out := new(ImplementsResp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ReleaseManager/IsAuthenticator", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ReleaseManager/IsAuthenticator", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2767,7 +2767,7 @@ func (c *releaseManagerClient) IsAuthenticator(ctx context.Context, in *emptypb.
 
 func (c *releaseManagerClient) Auth(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*Auth_AuthResponse, error) {
 	out := new(Auth_AuthResponse)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ReleaseManager/Auth", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ReleaseManager/Auth", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2776,7 +2776,7 @@ func (c *releaseManagerClient) Auth(ctx context.Context, in *FuncSpec_Args, opts
 
 func (c *releaseManagerClient) AuthSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ReleaseManager/AuthSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ReleaseManager/AuthSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2785,7 +2785,7 @@ func (c *releaseManagerClient) AuthSpec(ctx context.Context, in *emptypb.Empty, 
 
 func (c *releaseManagerClient) ValidateAuth(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ReleaseManager/ValidateAuth", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ReleaseManager/ValidateAuth", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2794,7 +2794,7 @@ func (c *releaseManagerClient) ValidateAuth(ctx context.Context, in *FuncSpec_Ar
 
 func (c *releaseManagerClient) ValidateAuthSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ReleaseManager/ValidateAuthSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ReleaseManager/ValidateAuthSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2803,7 +2803,7 @@ func (c *releaseManagerClient) ValidateAuthSpec(ctx context.Context, in *emptypb
 
 func (c *releaseManagerClient) ConfigStruct(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Config_StructResp, error) {
 	out := new(Config_StructResp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ReleaseManager/ConfigStruct", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ReleaseManager/ConfigStruct", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2812,7 +2812,7 @@ func (c *releaseManagerClient) ConfigStruct(ctx context.Context, in *emptypb.Emp
 
 func (c *releaseManagerClient) Configure(ctx context.Context, in *Config_ConfigureRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ReleaseManager/Configure", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ReleaseManager/Configure", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2821,7 +2821,7 @@ func (c *releaseManagerClient) Configure(ctx context.Context, in *Config_Configu
 
 func (c *releaseManagerClient) Documentation(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Config_Documentation, error) {
 	out := new(Config_Documentation)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ReleaseManager/Documentation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ReleaseManager/Documentation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2830,7 +2830,7 @@ func (c *releaseManagerClient) Documentation(ctx context.Context, in *emptypb.Em
 
 func (c *releaseManagerClient) IsDestroyer(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ImplementsResp, error) {
 	out := new(ImplementsResp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ReleaseManager/IsDestroyer", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ReleaseManager/IsDestroyer", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2839,7 +2839,7 @@ func (c *releaseManagerClient) IsDestroyer(ctx context.Context, in *emptypb.Empt
 
 func (c *releaseManagerClient) DestroySpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ReleaseManager/DestroySpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ReleaseManager/DestroySpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2848,7 +2848,7 @@ func (c *releaseManagerClient) DestroySpec(ctx context.Context, in *emptypb.Empt
 
 func (c *releaseManagerClient) Destroy(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*Destroy_Resp, error) {
 	out := new(Destroy_Resp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ReleaseManager/Destroy", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ReleaseManager/Destroy", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2857,7 +2857,7 @@ func (c *releaseManagerClient) Destroy(ctx context.Context, in *FuncSpec_Args, o
 
 func (c *releaseManagerClient) IsWorkspaceDestroyer(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ImplementsResp, error) {
 	out := new(ImplementsResp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ReleaseManager/IsWorkspaceDestroyer", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ReleaseManager/IsWorkspaceDestroyer", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2866,7 +2866,7 @@ func (c *releaseManagerClient) IsWorkspaceDestroyer(ctx context.Context, in *emp
 
 func (c *releaseManagerClient) DestroyWorkspaceSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ReleaseManager/DestroyWorkspaceSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ReleaseManager/DestroyWorkspaceSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2875,7 +2875,7 @@ func (c *releaseManagerClient) DestroyWorkspaceSpec(ctx context.Context, in *emp
 
 func (c *releaseManagerClient) DestroyWorkspace(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ReleaseManager/DestroyWorkspace", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ReleaseManager/DestroyWorkspace", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2884,7 +2884,7 @@ func (c *releaseManagerClient) DestroyWorkspace(ctx context.Context, in *FuncSpe
 
 func (c *releaseManagerClient) ReleaseSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ReleaseManager/ReleaseSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ReleaseManager/ReleaseSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2893,7 +2893,7 @@ func (c *releaseManagerClient) ReleaseSpec(ctx context.Context, in *emptypb.Empt
 
 func (c *releaseManagerClient) Release(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*Release_Resp, error) {
 	out := new(Release_Resp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ReleaseManager/Release", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ReleaseManager/Release", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2902,7 +2902,7 @@ func (c *releaseManagerClient) Release(ctx context.Context, in *FuncSpec_Args, o
 
 func (c *releaseManagerClient) IsStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ImplementsResp, error) {
 	out := new(ImplementsResp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ReleaseManager/IsStatus", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ReleaseManager/IsStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2911,7 +2911,7 @@ func (c *releaseManagerClient) IsStatus(ctx context.Context, in *emptypb.Empty, 
 
 func (c *releaseManagerClient) StatusSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ReleaseManager/StatusSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ReleaseManager/StatusSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2920,7 +2920,7 @@ func (c *releaseManagerClient) StatusSpec(ctx context.Context, in *emptypb.Empty
 
 func (c *releaseManagerClient) Status(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*StatusReport, error) {
 	out := new(StatusReport)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ReleaseManager/Status", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ReleaseManager/Status", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3040,7 +3040,7 @@ func _ReleaseManager_IsAuthenticator_Handler(srv interface{}, ctx context.Contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ReleaseManager/IsAuthenticator",
+		FullMethod: "/hashicorp.derrick.sdk.ReleaseManager/IsAuthenticator",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReleaseManagerServer).IsAuthenticator(ctx, req.(*emptypb.Empty))
@@ -3058,7 +3058,7 @@ func _ReleaseManager_Auth_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ReleaseManager/Auth",
+		FullMethod: "/hashicorp.derrick.sdk.ReleaseManager/Auth",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReleaseManagerServer).Auth(ctx, req.(*FuncSpec_Args))
@@ -3076,7 +3076,7 @@ func _ReleaseManager_AuthSpec_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ReleaseManager/AuthSpec",
+		FullMethod: "/hashicorp.derrick.sdk.ReleaseManager/AuthSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReleaseManagerServer).AuthSpec(ctx, req.(*emptypb.Empty))
@@ -3094,7 +3094,7 @@ func _ReleaseManager_ValidateAuth_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ReleaseManager/ValidateAuth",
+		FullMethod: "/hashicorp.derrick.sdk.ReleaseManager/ValidateAuth",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReleaseManagerServer).ValidateAuth(ctx, req.(*FuncSpec_Args))
@@ -3112,7 +3112,7 @@ func _ReleaseManager_ValidateAuthSpec_Handler(srv interface{}, ctx context.Conte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ReleaseManager/ValidateAuthSpec",
+		FullMethod: "/hashicorp.derrick.sdk.ReleaseManager/ValidateAuthSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReleaseManagerServer).ValidateAuthSpec(ctx, req.(*emptypb.Empty))
@@ -3130,7 +3130,7 @@ func _ReleaseManager_ConfigStruct_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ReleaseManager/ConfigStruct",
+		FullMethod: "/hashicorp.derrick.sdk.ReleaseManager/ConfigStruct",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReleaseManagerServer).ConfigStruct(ctx, req.(*emptypb.Empty))
@@ -3148,7 +3148,7 @@ func _ReleaseManager_Configure_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ReleaseManager/Configure",
+		FullMethod: "/hashicorp.derrick.sdk.ReleaseManager/Configure",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReleaseManagerServer).Configure(ctx, req.(*Config_ConfigureRequest))
@@ -3166,7 +3166,7 @@ func _ReleaseManager_Documentation_Handler(srv interface{}, ctx context.Context,
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ReleaseManager/Documentation",
+		FullMethod: "/hashicorp.derrick.sdk.ReleaseManager/Documentation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReleaseManagerServer).Documentation(ctx, req.(*emptypb.Empty))
@@ -3184,7 +3184,7 @@ func _ReleaseManager_IsDestroyer_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ReleaseManager/IsDestroyer",
+		FullMethod: "/hashicorp.derrick.sdk.ReleaseManager/IsDestroyer",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReleaseManagerServer).IsDestroyer(ctx, req.(*emptypb.Empty))
@@ -3202,7 +3202,7 @@ func _ReleaseManager_DestroySpec_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ReleaseManager/DestroySpec",
+		FullMethod: "/hashicorp.derrick.sdk.ReleaseManager/DestroySpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReleaseManagerServer).DestroySpec(ctx, req.(*emptypb.Empty))
@@ -3220,7 +3220,7 @@ func _ReleaseManager_Destroy_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ReleaseManager/Destroy",
+		FullMethod: "/hashicorp.derrick.sdk.ReleaseManager/Destroy",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReleaseManagerServer).Destroy(ctx, req.(*FuncSpec_Args))
@@ -3238,7 +3238,7 @@ func _ReleaseManager_IsWorkspaceDestroyer_Handler(srv interface{}, ctx context.C
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ReleaseManager/IsWorkspaceDestroyer",
+		FullMethod: "/hashicorp.derrick.sdk.ReleaseManager/IsWorkspaceDestroyer",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReleaseManagerServer).IsWorkspaceDestroyer(ctx, req.(*emptypb.Empty))
@@ -3256,7 +3256,7 @@ func _ReleaseManager_DestroyWorkspaceSpec_Handler(srv interface{}, ctx context.C
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ReleaseManager/DestroyWorkspaceSpec",
+		FullMethod: "/hashicorp.derrick.sdk.ReleaseManager/DestroyWorkspaceSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReleaseManagerServer).DestroyWorkspaceSpec(ctx, req.(*emptypb.Empty))
@@ -3274,7 +3274,7 @@ func _ReleaseManager_DestroyWorkspace_Handler(srv interface{}, ctx context.Conte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ReleaseManager/DestroyWorkspace",
+		FullMethod: "/hashicorp.derrick.sdk.ReleaseManager/DestroyWorkspace",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReleaseManagerServer).DestroyWorkspace(ctx, req.(*FuncSpec_Args))
@@ -3292,7 +3292,7 @@ func _ReleaseManager_ReleaseSpec_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ReleaseManager/ReleaseSpec",
+		FullMethod: "/hashicorp.derrick.sdk.ReleaseManager/ReleaseSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReleaseManagerServer).ReleaseSpec(ctx, req.(*emptypb.Empty))
@@ -3310,7 +3310,7 @@ func _ReleaseManager_Release_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ReleaseManager/Release",
+		FullMethod: "/hashicorp.derrick.sdk.ReleaseManager/Release",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReleaseManagerServer).Release(ctx, req.(*FuncSpec_Args))
@@ -3328,7 +3328,7 @@ func _ReleaseManager_IsStatus_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ReleaseManager/IsStatus",
+		FullMethod: "/hashicorp.derrick.sdk.ReleaseManager/IsStatus",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReleaseManagerServer).IsStatus(ctx, req.(*emptypb.Empty))
@@ -3346,7 +3346,7 @@ func _ReleaseManager_StatusSpec_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ReleaseManager/StatusSpec",
+		FullMethod: "/hashicorp.derrick.sdk.ReleaseManager/StatusSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReleaseManagerServer).StatusSpec(ctx, req.(*emptypb.Empty))
@@ -3364,7 +3364,7 @@ func _ReleaseManager_Status_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ReleaseManager/Status",
+		FullMethod: "/hashicorp.derrick.sdk.ReleaseManager/Status",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReleaseManagerServer).Status(ctx, req.(*FuncSpec_Args))
@@ -3376,7 +3376,7 @@ func _ReleaseManager_Status_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ReleaseManager_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "hashicorp.waypoint.sdk.ReleaseManager",
+	ServiceName: "hashicorp.derrick.sdk.ReleaseManager",
 	HandlerType: (*ReleaseManagerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -3483,7 +3483,7 @@ func NewConfigSourcerClient(cc grpc.ClientConnInterface) ConfigSourcerClient {
 
 func (c *configSourcerClient) ConfigStruct(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Config_StructResp, error) {
 	out := new(Config_StructResp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ConfigSourcer/ConfigStruct", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ConfigSourcer/ConfigStruct", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3492,7 +3492,7 @@ func (c *configSourcerClient) ConfigStruct(ctx context.Context, in *emptypb.Empt
 
 func (c *configSourcerClient) Configure(ctx context.Context, in *Config_ConfigureRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ConfigSourcer/Configure", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ConfigSourcer/Configure", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3501,7 +3501,7 @@ func (c *configSourcerClient) Configure(ctx context.Context, in *Config_Configur
 
 func (c *configSourcerClient) Documentation(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Config_Documentation, error) {
 	out := new(Config_Documentation)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ConfigSourcer/Documentation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ConfigSourcer/Documentation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3510,7 +3510,7 @@ func (c *configSourcerClient) Documentation(ctx context.Context, in *emptypb.Emp
 
 func (c *configSourcerClient) ReadSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ConfigSourcer/ReadSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ConfigSourcer/ReadSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3519,7 +3519,7 @@ func (c *configSourcerClient) ReadSpec(ctx context.Context, in *emptypb.Empty, o
 
 func (c *configSourcerClient) Read(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*ConfigSource_ReadResponse, error) {
 	out := new(ConfigSource_ReadResponse)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ConfigSourcer/Read", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ConfigSourcer/Read", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3528,7 +3528,7 @@ func (c *configSourcerClient) Read(ctx context.Context, in *FuncSpec_Args, opts 
 
 func (c *configSourcerClient) StopSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ConfigSourcer/StopSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ConfigSourcer/StopSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3537,7 +3537,7 @@ func (c *configSourcerClient) StopSpec(ctx context.Context, in *emptypb.Empty, o
 
 func (c *configSourcerClient) Stop(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.ConfigSourcer/Stop", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.ConfigSourcer/Stop", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3606,7 +3606,7 @@ func _ConfigSourcer_ConfigStruct_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ConfigSourcer/ConfigStruct",
+		FullMethod: "/hashicorp.derrick.sdk.ConfigSourcer/ConfigStruct",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ConfigSourcerServer).ConfigStruct(ctx, req.(*emptypb.Empty))
@@ -3624,7 +3624,7 @@ func _ConfigSourcer_Configure_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ConfigSourcer/Configure",
+		FullMethod: "/hashicorp.derrick.sdk.ConfigSourcer/Configure",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ConfigSourcerServer).Configure(ctx, req.(*Config_ConfigureRequest))
@@ -3642,7 +3642,7 @@ func _ConfigSourcer_Documentation_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ConfigSourcer/Documentation",
+		FullMethod: "/hashicorp.derrick.sdk.ConfigSourcer/Documentation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ConfigSourcerServer).Documentation(ctx, req.(*emptypb.Empty))
@@ -3660,7 +3660,7 @@ func _ConfigSourcer_ReadSpec_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ConfigSourcer/ReadSpec",
+		FullMethod: "/hashicorp.derrick.sdk.ConfigSourcer/ReadSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ConfigSourcerServer).ReadSpec(ctx, req.(*emptypb.Empty))
@@ -3678,7 +3678,7 @@ func _ConfigSourcer_Read_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ConfigSourcer/Read",
+		FullMethod: "/hashicorp.derrick.sdk.ConfigSourcer/Read",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ConfigSourcerServer).Read(ctx, req.(*FuncSpec_Args))
@@ -3696,7 +3696,7 @@ func _ConfigSourcer_StopSpec_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ConfigSourcer/StopSpec",
+		FullMethod: "/hashicorp.derrick.sdk.ConfigSourcer/StopSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ConfigSourcerServer).StopSpec(ctx, req.(*emptypb.Empty))
@@ -3714,7 +3714,7 @@ func _ConfigSourcer_Stop_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.ConfigSourcer/Stop",
+		FullMethod: "/hashicorp.derrick.sdk.ConfigSourcer/Stop",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ConfigSourcerServer).Stop(ctx, req.(*FuncSpec_Args))
@@ -3726,7 +3726,7 @@ func _ConfigSourcer_Stop_Handler(srv interface{}, ctx context.Context, dec func(
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ConfigSourcer_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "hashicorp.waypoint.sdk.ConfigSourcer",
+	ServiceName: "hashicorp.derrick.sdk.ConfigSourcer",
 	HandlerType: (*ConfigSourcerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -3787,7 +3787,7 @@ func NewTaskLauncherClient(cc grpc.ClientConnInterface) TaskLauncherClient {
 
 func (c *taskLauncherClient) ConfigStruct(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Config_StructResp, error) {
 	out := new(Config_StructResp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.TaskLauncher/ConfigStruct", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.TaskLauncher/ConfigStruct", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3796,7 +3796,7 @@ func (c *taskLauncherClient) ConfigStruct(ctx context.Context, in *emptypb.Empty
 
 func (c *taskLauncherClient) Configure(ctx context.Context, in *Config_ConfigureRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.TaskLauncher/Configure", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.TaskLauncher/Configure", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3805,7 +3805,7 @@ func (c *taskLauncherClient) Configure(ctx context.Context, in *Config_Configure
 
 func (c *taskLauncherClient) Documentation(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Config_Documentation, error) {
 	out := new(Config_Documentation)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.TaskLauncher/Documentation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.TaskLauncher/Documentation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3814,7 +3814,7 @@ func (c *taskLauncherClient) Documentation(ctx context.Context, in *emptypb.Empt
 
 func (c *taskLauncherClient) StartSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.TaskLauncher/StartSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.TaskLauncher/StartSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3823,7 +3823,7 @@ func (c *taskLauncherClient) StartSpec(ctx context.Context, in *emptypb.Empty, o
 
 func (c *taskLauncherClient) StopSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.TaskLauncher/StopSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.TaskLauncher/StopSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3832,7 +3832,7 @@ func (c *taskLauncherClient) StopSpec(ctx context.Context, in *emptypb.Empty, op
 
 func (c *taskLauncherClient) WatchSpec(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*FuncSpec, error) {
 	out := new(FuncSpec)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.TaskLauncher/WatchSpec", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.TaskLauncher/WatchSpec", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3841,7 +3841,7 @@ func (c *taskLauncherClient) WatchSpec(ctx context.Context, in *emptypb.Empty, o
 
 func (c *taskLauncherClient) StartTask(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*TaskLaunch_Resp, error) {
 	out := new(TaskLaunch_Resp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.TaskLauncher/StartTask", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.TaskLauncher/StartTask", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3850,7 +3850,7 @@ func (c *taskLauncherClient) StartTask(ctx context.Context, in *FuncSpec_Args, o
 
 func (c *taskLauncherClient) StopTask(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.TaskLauncher/StopTask", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.TaskLauncher/StopTask", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3859,7 +3859,7 @@ func (c *taskLauncherClient) StopTask(ctx context.Context, in *FuncSpec_Args, op
 
 func (c *taskLauncherClient) WatchTask(ctx context.Context, in *FuncSpec_Args, opts ...grpc.CallOption) (*TaskWatch_Resp, error) {
 	out := new(TaskWatch_Resp)
-	err := c.cc.Invoke(ctx, "/hashicorp.waypoint.sdk.TaskLauncher/WatchTask", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hashicorp.derrick.sdk.TaskLauncher/WatchTask", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3936,7 +3936,7 @@ func _TaskLauncher_ConfigStruct_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.TaskLauncher/ConfigStruct",
+		FullMethod: "/hashicorp.derrick.sdk.TaskLauncher/ConfigStruct",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TaskLauncherServer).ConfigStruct(ctx, req.(*emptypb.Empty))
@@ -3954,7 +3954,7 @@ func _TaskLauncher_Configure_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.TaskLauncher/Configure",
+		FullMethod: "/hashicorp.derrick.sdk.TaskLauncher/Configure",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TaskLauncherServer).Configure(ctx, req.(*Config_ConfigureRequest))
@@ -3972,7 +3972,7 @@ func _TaskLauncher_Documentation_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.TaskLauncher/Documentation",
+		FullMethod: "/hashicorp.derrick.sdk.TaskLauncher/Documentation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TaskLauncherServer).Documentation(ctx, req.(*emptypb.Empty))
@@ -3990,7 +3990,7 @@ func _TaskLauncher_StartSpec_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.TaskLauncher/StartSpec",
+		FullMethod: "/hashicorp.derrick.sdk.TaskLauncher/StartSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TaskLauncherServer).StartSpec(ctx, req.(*emptypb.Empty))
@@ -4008,7 +4008,7 @@ func _TaskLauncher_StopSpec_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.TaskLauncher/StopSpec",
+		FullMethod: "/hashicorp.derrick.sdk.TaskLauncher/StopSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TaskLauncherServer).StopSpec(ctx, req.(*emptypb.Empty))
@@ -4026,7 +4026,7 @@ func _TaskLauncher_WatchSpec_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.TaskLauncher/WatchSpec",
+		FullMethod: "/hashicorp.derrick.sdk.TaskLauncher/WatchSpec",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TaskLauncherServer).WatchSpec(ctx, req.(*emptypb.Empty))
@@ -4044,7 +4044,7 @@ func _TaskLauncher_StartTask_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.TaskLauncher/StartTask",
+		FullMethod: "/hashicorp.derrick.sdk.TaskLauncher/StartTask",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TaskLauncherServer).StartTask(ctx, req.(*FuncSpec_Args))
@@ -4062,7 +4062,7 @@ func _TaskLauncher_StopTask_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.TaskLauncher/StopTask",
+		FullMethod: "/hashicorp.derrick.sdk.TaskLauncher/StopTask",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TaskLauncherServer).StopTask(ctx, req.(*FuncSpec_Args))
@@ -4080,7 +4080,7 @@ func _TaskLauncher_WatchTask_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hashicorp.waypoint.sdk.TaskLauncher/WatchTask",
+		FullMethod: "/hashicorp.derrick.sdk.TaskLauncher/WatchTask",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TaskLauncherServer).WatchTask(ctx, req.(*FuncSpec_Args))
@@ -4092,7 +4092,7 @@ func _TaskLauncher_WatchTask_Handler(srv interface{}, ctx context.Context, dec f
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var TaskLauncher_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "hashicorp.waypoint.sdk.TaskLauncher",
+	ServiceName: "hashicorp.derrick.sdk.TaskLauncher",
 	HandlerType: (*TaskLauncherServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

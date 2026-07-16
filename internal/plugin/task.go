@@ -12,12 +12,12 @@ import (
 	"google.golang.org/grpc/status"
 	empty "google.golang.org/protobuf/types/known/emptypb"
 
-	"github.com/hashicorp/waypoint-plugin-sdk/component"
-	"github.com/hashicorp/waypoint-plugin-sdk/docs"
-	"github.com/hashicorp/waypoint-plugin-sdk/internal/funcspec"
-	"github.com/hashicorp/waypoint-plugin-sdk/internal/pluginargs"
-	"github.com/hashicorp/waypoint-plugin-sdk/internal/plugincomponent"
-	pb "github.com/hashicorp/waypoint-plugin-sdk/proto/gen"
+	"github.com/nomatronio/derrick-plugin-sdk/component"
+	"github.com/nomatronio/derrick-plugin-sdk/docs"
+	"github.com/nomatronio/derrick-plugin-sdk/internal/funcspec"
+	"github.com/nomatronio/derrick-plugin-sdk/internal/pluginargs"
+	"github.com/nomatronio/derrick-plugin-sdk/internal/plugincomponent"
+	pb "github.com/nomatronio/derrick-plugin-sdk/proto/gen"
 )
 
 // TaskLauncherPlugin implements plugin.Plugin (specifically GRPCPlugin) for

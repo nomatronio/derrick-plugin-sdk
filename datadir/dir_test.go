@@ -7,7 +7,7 @@ import (
 )
 
 func TestNewRootDir(t *testing.T) {
-	path := "/tmp/waypoint"
+	path := "/tmp/derrick"
 	rootDir, err := newRootDir(path)
 
 	expectedCacheDir := path + "/cache"
@@ -31,7 +31,7 @@ func TestNewBasicDir(t *testing.T) {
 func TestNewScopedDir(t *testing.T) {
 	cacheDirStr := "/tmp/cache"
 	dataDirStr := "/tmp/data"
-	path := "/waypoint"
+	path := "/derrick"
 	parent := NewBasicDir(cacheDirStr, dataDirStr)
 
 	scopedDir, err := NewScopedDir(parent, path)

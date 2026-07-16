@@ -7,7 +7,7 @@ import (
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-plugin"
 
-	internalplugin "github.com/hashicorp/waypoint-plugin-sdk/internal/plugin"
+	internalplugin "github.com/nomatronio/derrick-plugin-sdk/internal/plugin"
 )
 
 // ClientConfig returns the base client config to use when connecting

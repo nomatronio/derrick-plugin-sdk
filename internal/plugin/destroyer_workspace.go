@@ -9,10 +9,10 @@ import (
 	"google.golang.org/grpc"
 	empty "google.golang.org/protobuf/types/known/emptypb"
 
-	"github.com/hashicorp/waypoint-plugin-sdk/component"
-	"github.com/hashicorp/waypoint-plugin-sdk/internal/funcspec"
-	"github.com/hashicorp/waypoint-plugin-sdk/internal/pluginargs"
-	pb "github.com/hashicorp/waypoint-plugin-sdk/proto/gen"
+	"github.com/nomatronio/derrick-plugin-sdk/component"
+	"github.com/nomatronio/derrick-plugin-sdk/internal/funcspec"
+	"github.com/nomatronio/derrick-plugin-sdk/internal/pluginargs"
+	pb "github.com/nomatronio/derrick-plugin-sdk/proto/gen"
 )
 
 // workspaceDestroyerClient implements component.WorkspaceDestroyer for a service that

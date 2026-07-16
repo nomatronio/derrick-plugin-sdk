@@ -10,7 +10,7 @@ import (
 	empty "google.golang.org/protobuf/types/known/emptypb"
 
 	"github.com/hashicorp/go-hclog"
-	pb "github.com/hashicorp/waypoint-plugin-sdk/proto/gen"
+	pb "github.com/nomatronio/derrick-plugin-sdk/proto/gen"
 )
 
 func init() {

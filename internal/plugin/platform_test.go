@@ -9,9 +9,9 @@ import (
 	"github.com/stretchr/testify/require"
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	"github.com/hashicorp/waypoint-plugin-sdk/component"
-	"github.com/hashicorp/waypoint-plugin-sdk/component/mocks"
-	pb "github.com/hashicorp/waypoint-plugin-sdk/proto/gen"
+	"github.com/nomatronio/derrick-plugin-sdk/component"
+	"github.com/nomatronio/derrick-plugin-sdk/component/mocks"
+	pb "github.com/nomatronio/derrick-plugin-sdk/proto/gen"
 )
 
 func TestPlatform_optionalInterfaces(t *testing.T) {

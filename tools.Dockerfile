@@ -22,4 +22,4 @@ COPY go.sum /tools
 # Make tools
 RUN go generate -tags tools /tools/tools/tools.go
 
-WORKDIR /waypoint
+WORKDIR /derrick

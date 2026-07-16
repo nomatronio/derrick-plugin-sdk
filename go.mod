@@ -1,4 +1,4 @@
-module github.com/hashicorp/waypoint-plugin-sdk
+module github.com/nomatronio/derrick-plugin-sdk
 
 go 1.19
 

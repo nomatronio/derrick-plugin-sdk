@@ -3,7 +3,7 @@ package component
 import (
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/gohcl"
-	"github.com/hashicorp/waypoint-plugin-sdk/docs"
+	"github.com/nomatronio/derrick-plugin-sdk/docs"
 )
 
 // Configurable can be optionally implemented by any component to

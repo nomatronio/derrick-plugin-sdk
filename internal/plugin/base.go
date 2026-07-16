@@ -5,7 +5,7 @@ import (
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-plugin"
 
-	"github.com/hashicorp/waypoint-plugin-sdk/internal/pluginargs"
+	"github.com/nomatronio/derrick-plugin-sdk/internal/pluginargs"
 )
 
 // base contains shared logic for all plugins. This should be embedded

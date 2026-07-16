@@ -603,7 +603,7 @@ func (*Ref) Descriptor() ([]byte, []int) {
 // StatusReport is the report genrated when querying the overall health of
 // a deployed or released application. This report can be either generated
 // by querying the platform itself which has performed the health checks,
-// or by Waypoint running user-defined health checks.
+// or by Derrick running user-defined health checks.
 type StatusReport struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -612,12 +612,12 @@ type StatusReport struct {
 	// a collection of resources for a deployed application
 	Resources []*StatusReport_Resource `protobuf:"bytes,1,rep,name=resources,proto3" json:"resources,omitempty"`
 	// the current overall health state for a deployment
-	Health StatusReport_Health `protobuf:"varint,2,opt,name=health,proto3,enum=hashicorp.waypoint.sdk.StatusReport_Health" json:"health,omitempty"`
+	Health StatusReport_Health `protobuf:"varint,2,opt,name=health,proto3,enum=hashicorp.derrick.sdk.StatusReport_Health" json:"health,omitempty"`
 	// a simple human readable message detailing the Health state
 	HealthMessage string `protobuf:"bytes,3,opt,name=health_message,json=healthMessage,proto3" json:"health_message,omitempty"`
 	// the time when this report was generated
 	GeneratedTime *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=generated_time,json=generatedTime,proto3" json:"generated_time,omitempty"`
-	// where the health check was performed. External means not executed by Waypoint,
+	// where the health check was performed. External means not executed by Derrick,
 	// but by the platform deployed to.
 	External bool `protobuf:"varint,5,opt,name=external,proto3" json:"external,omitempty"`
 }
@@ -1129,7 +1129,7 @@ type DeclaredResource struct {
 	// EX: Availability zones on a load balancer, concurrency limit on a lambda function, etc.
 	StateJson string `protobuf:"bytes,4,opt,name=state_json,json=stateJson,proto3" json:"state_json,omitempty"`
 	// high level type of the resource, used for display purposes.
-	CategoryDisplayHint ResourceCategoryDisplayHint `protobuf:"varint,5,opt,name=category_display_hint,json=categoryDisplayHint,proto3,enum=hashicorp.waypoint.sdk.ResourceCategoryDisplayHint" json:"category_display_hint,omitempty"`
+	CategoryDisplayHint ResourceCategoryDisplayHint `protobuf:"varint,5,opt,name=category_display_hint,json=categoryDisplayHint,proto3,enum=hashicorp.derrick.sdk.ResourceCategoryDisplayHint" json:"category_display_hint,omitempty"`
 }
 
 func (x *DeclaredResource) Reset() {
@@ -2553,7 +2553,7 @@ type FuncSpec_Value struct {
 	// specify the proto Any message type and not a language-specific type.
 	Type string `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
 	// primitive_type is set to a non-zero if the type is NOT an *opaqueany.Any.
-	PrimitiveType FuncSpec_Value_PrimitiveType `protobuf:"varint,4,opt,name=primitive_type,json=primitiveType,proto3,enum=hashicorp.waypoint.sdk.FuncSpec_Value_PrimitiveType" json:"primitive_type,omitempty"`
+	PrimitiveType FuncSpec_Value_PrimitiveType `protobuf:"varint,4,opt,name=primitive_type,json=primitiveType,proto3,enum=hashicorp.derrick.sdk.FuncSpec_Value_PrimitiveType" json:"primitive_type,omitempty"`
 	// value for this Value. This is only set for Args and has no impact on specs.
 	// This value MUST match the type or primitive_type fields.
 	//
@@ -3430,13 +3430,13 @@ type StatusReport_Resource struct {
 	// A link directly to the resource in the platform, if applicable.
 	PlatformUrl string `protobuf:"bytes,9,opt,name=platform_url,json=platformUrl,proto3" json:"platform_url,omitempty"`
 	// The high level category of the resource, used as a hint to the UI on how to display the resource.
-	CategoryDisplayHint ResourceCategoryDisplayHint `protobuf:"varint,10,opt,name=category_display_hint,json=categoryDisplayHint,proto3,enum=hashicorp.waypoint.sdk.ResourceCategoryDisplayHint" json:"category_display_hint,omitempty"`
+	CategoryDisplayHint ResourceCategoryDisplayHint `protobuf:"varint,10,opt,name=category_display_hint,json=categoryDisplayHint,proto3,enum=hashicorp.derrick.sdk.ResourceCategoryDisplayHint" json:"category_display_hint,omitempty"`
 	// platform-reported time of resource creation
 	CreatedTime *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=created_time,json=createdTime,proto3" json:"created_time,omitempty"`
 	// any additional metadata about the resource, encoded as JSON
 	StateJson string `protobuf:"bytes,12,opt,name=state_json,json=stateJson,proto3" json:"state_json,omitempty"`
 	// the current health state for a single resource
-	Health StatusReport_Health `protobuf:"varint,2,opt,name=health,proto3,enum=hashicorp.waypoint.sdk.StatusReport_Health" json:"health,omitempty"`
+	Health StatusReport_Health `protobuf:"varint,2,opt,name=health,proto3,enum=hashicorp.derrick.sdk.StatusReport_Health" json:"health,omitempty"`
 	// a simple human readable message detailing the Health state
 	HealthMessage string `protobuf:"bytes,3,opt,name=health_message,json=healthMessage,proto3" json:"health_message,omitempty"`
 }
@@ -5632,7 +5632,7 @@ type ConfigSource_Value_Json struct {
 	// A configsourcer can also return structured json data. This
 	// is useful for dynamic variable defaults. A configsourcer
 	// can return a complex type (like a map(string)), and the
-	// user in the waypoint.hcl can treat it as a map variable.
+	// user in the derrick.hcl can treat it as a map variable.
 	//
 	// json values are only currently supported in the context of
 	// hcl variables - not app config or runner config.
@@ -6915,107 +6915,107 @@ func file_plugin_proto_rawDescGZIP() []byte {
 var file_plugin_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
 var file_plugin_proto_msgTypes = make([]protoimpl.MessageInfo, 98)
 var file_plugin_proto_goTypes = []interface{}{
-	(ResourceCategoryDisplayHint)(0),         // 0: hashicorp.waypoint.sdk.ResourceCategoryDisplayHint
-	(FuncSpec_Value_PrimitiveType)(0),        // 1: hashicorp.waypoint.sdk.FuncSpec.Value.PrimitiveType
-	(StatusReport_Health)(0),                 // 2: hashicorp.waypoint.sdk.StatusReport.Health
-	(*Args)(nil),                             // 3: hashicorp.waypoint.sdk.Args
-	(*FuncSpec)(nil),                         // 4: hashicorp.waypoint.sdk.FuncSpec
-	(*Config)(nil),                           // 5: hashicorp.waypoint.sdk.Config
-	(*Auth)(nil),                             // 6: hashicorp.waypoint.sdk.Auth
-	(*Generation)(nil),                       // 7: hashicorp.waypoint.sdk.Generation
-	(*ImplementsResp)(nil),                   // 8: hashicorp.waypoint.sdk.ImplementsResp
-	(*Framework)(nil),                        // 9: hashicorp.waypoint.sdk.Framework
-	(*Ref)(nil),                              // 10: hashicorp.waypoint.sdk.Ref
-	(*StatusReport)(nil),                     // 11: hashicorp.waypoint.sdk.StatusReport
-	(*WindowSize)(nil),                       // 12: hashicorp.waypoint.sdk.WindowSize
-	(*ExecSession)(nil),                      // 13: hashicorp.waypoint.sdk.ExecSession
-	(*ExecResult)(nil),                       // 14: hashicorp.waypoint.sdk.ExecResult
-	(*Logs)(nil),                             // 15: hashicorp.waypoint.sdk.Logs
-	(*TerminalUI)(nil),                       // 16: hashicorp.waypoint.sdk.TerminalUI
-	(*Map)(nil),                              // 17: hashicorp.waypoint.sdk.Map
-	(*Build)(nil),                            // 18: hashicorp.waypoint.sdk.Build
-	(*DefaultReleaser)(nil),                  // 19: hashicorp.waypoint.sdk.DefaultReleaser
-	(*Deploy)(nil),                           // 20: hashicorp.waypoint.sdk.Deploy
-	(*Destroy)(nil),                          // 21: hashicorp.waypoint.sdk.Destroy
-	(*DeclaredResource)(nil),                 // 22: hashicorp.waypoint.sdk.DeclaredResource
-	(*DeclaredResources)(nil),                // 23: hashicorp.waypoint.sdk.DeclaredResources
-	(*DestroyedResource)(nil),                // 24: hashicorp.waypoint.sdk.DestroyedResource
-	(*DestroyedResources)(nil),               // 25: hashicorp.waypoint.sdk.DestroyedResources
-	(*Push)(nil),                             // 26: hashicorp.waypoint.sdk.Push
-	(*Access)(nil),                           // 27: hashicorp.waypoint.sdk.Access
-	(*Release)(nil),                          // 28: hashicorp.waypoint.sdk.Release
-	(*ConfigSource)(nil),                     // 29: hashicorp.waypoint.sdk.ConfigSource
-	(*TaskLaunch)(nil),                       // 30: hashicorp.waypoint.sdk.TaskLaunch
-	(*TaskWatch)(nil),                        // 31: hashicorp.waypoint.sdk.TaskWatch
-	(*Args_Source)(nil),                      // 32: hashicorp.waypoint.sdk.Args.Source
-	(*Args_JobInfo)(nil),                     // 33: hashicorp.waypoint.sdk.Args.JobInfo
-	(*Args_DeploymentConfig)(nil),            // 34: hashicorp.waypoint.sdk.Args.DeploymentConfig
-	(*Args_DataDir)(nil),                     // 35: hashicorp.waypoint.sdk.Args.DataDir
-	(*Args_Logger)(nil),                      // 36: hashicorp.waypoint.sdk.Args.Logger
-	(*Args_TerminalUI)(nil),                  // 37: hashicorp.waypoint.sdk.Args.TerminalUI
-	(*Args_ReleaseTargets)(nil),              // 38: hashicorp.waypoint.sdk.Args.ReleaseTargets
-	(*Args_LabelSet)(nil),                    // 39: hashicorp.waypoint.sdk.Args.LabelSet
-	(*Args_ExecSessionInfo)(nil),             // 40: hashicorp.waypoint.sdk.Args.ExecSessionInfo
-	(*Args_LogViewer)(nil),                   // 41: hashicorp.waypoint.sdk.Args.LogViewer
-	(*Args_TaskLaunchInfo)(nil),              // 42: hashicorp.waypoint.sdk.Args.TaskLaunchInfo
-	(*Args_DataDir_Project)(nil),             // 43: hashicorp.waypoint.sdk.Args.DataDir.Project
-	(*Args_DataDir_App)(nil),                 // 44: hashicorp.waypoint.sdk.Args.DataDir.App
-	(*Args_DataDir_Component)(nil),           // 45: hashicorp.waypoint.sdk.Args.DataDir.Component
-	(*Args_ReleaseTargets_Target)(nil),       // 46: hashicorp.waypoint.sdk.Args.ReleaseTargets.Target
-	nil,                                      // 47: hashicorp.waypoint.sdk.Args.LabelSet.LabelsEntry
-	nil,                                      // 48: hashicorp.waypoint.sdk.Args.TaskLaunchInfo.EnvironmentVariablesEntry
-	(*FuncSpec_Value)(nil),                   // 49: hashicorp.waypoint.sdk.FuncSpec.Value
-	(*FuncSpec_Args)(nil),                    // 50: hashicorp.waypoint.sdk.FuncSpec.Args
-	(*Config_ConfigureRequest)(nil),          // 51: hashicorp.waypoint.sdk.Config.ConfigureRequest
-	(*Config_StructResp)(nil),                // 52: hashicorp.waypoint.sdk.Config.StructResp
-	(*Config_FieldDocumentation)(nil),        // 53: hashicorp.waypoint.sdk.Config.FieldDocumentation
-	(*Config_MapperDocumentation)(nil),       // 54: hashicorp.waypoint.sdk.Config.MapperDocumentation
-	(*Config_Documentation)(nil),             // 55: hashicorp.waypoint.sdk.Config.Documentation
-	nil,                                      // 56: hashicorp.waypoint.sdk.Config.Documentation.FieldsEntry
-	nil,                                      // 57: hashicorp.waypoint.sdk.Config.Documentation.TemplateFieldsEntry
-	nil,                                      // 58: hashicorp.waypoint.sdk.Config.Documentation.RequestFieldsEntry
-	(*Auth_AuthResponse)(nil),                // 59: hashicorp.waypoint.sdk.Auth.AuthResponse
-	(*Generation_Resp)(nil),                  // 60: hashicorp.waypoint.sdk.Generation.Resp
-	(*Framework_ResourceManagerState)(nil),   // 61: hashicorp.waypoint.sdk.Framework.ResourceManagerState
-	(*Framework_ResourceState)(nil),          // 62: hashicorp.waypoint.sdk.Framework.ResourceState
-	(*Ref_DeclaredResource)(nil),             // 63: hashicorp.waypoint.sdk.Ref.DeclaredResource
-	(*StatusReport_Resource)(nil),            // 64: hashicorp.waypoint.sdk.StatusReport.Resource
-	(*ExecSession_OutputRequest)(nil),        // 65: hashicorp.waypoint.sdk.ExecSession.OutputRequest
-	(*ExecSession_InputRequest)(nil),         // 66: hashicorp.waypoint.sdk.ExecSession.InputRequest
-	(*Logs_Resp)(nil),                        // 67: hashicorp.waypoint.sdk.Logs.Resp
-	(*Logs_NextBatchResp)(nil),               // 68: hashicorp.waypoint.sdk.Logs.NextBatchResp
-	(*Logs_Event)(nil),                       // 69: hashicorp.waypoint.sdk.Logs.Event
-	(*TerminalUI_IsInteractiveResponse)(nil), // 70: hashicorp.waypoint.sdk.TerminalUI.IsInteractiveResponse
-	(*TerminalUI_OutputRequest)(nil),         // 71: hashicorp.waypoint.sdk.TerminalUI.OutputRequest
-	(*TerminalUI_Response)(nil),              // 72: hashicorp.waypoint.sdk.TerminalUI.Response
-	(*TerminalUI_Event)(nil),                 // 73: hashicorp.waypoint.sdk.TerminalUI.Event
-	(*TerminalUI_Event_Input)(nil),           // 74: hashicorp.waypoint.sdk.TerminalUI.Event.Input
-	(*TerminalUI_Event_InputResp)(nil),       // 75: hashicorp.waypoint.sdk.TerminalUI.Event.InputResp
-	(*TerminalUI_Event_Status)(nil),          // 76: hashicorp.waypoint.sdk.TerminalUI.Event.Status
-	(*TerminalUI_Event_Line)(nil),            // 77: hashicorp.waypoint.sdk.TerminalUI.Event.Line
-	(*TerminalUI_Event_Raw)(nil),             // 78: hashicorp.waypoint.sdk.TerminalUI.Event.Raw
-	(*TerminalUI_Event_NamedValue)(nil),      // 79: hashicorp.waypoint.sdk.TerminalUI.Event.NamedValue
-	(*TerminalUI_Event_NamedValues)(nil),     // 80: hashicorp.waypoint.sdk.TerminalUI.Event.NamedValues
-	(*TerminalUI_Event_TableEntry)(nil),      // 81: hashicorp.waypoint.sdk.TerminalUI.Event.TableEntry
-	(*TerminalUI_Event_TableRow)(nil),        // 82: hashicorp.waypoint.sdk.TerminalUI.Event.TableRow
-	(*TerminalUI_Event_Table)(nil),           // 83: hashicorp.waypoint.sdk.TerminalUI.Event.Table
-	(*TerminalUI_Event_StepGroup)(nil),       // 84: hashicorp.waypoint.sdk.TerminalUI.Event.StepGroup
-	(*TerminalUI_Event_Step)(nil),            // 85: hashicorp.waypoint.sdk.TerminalUI.Event.Step
-	(*Map_Request)(nil),                      // 86: hashicorp.waypoint.sdk.Map.Request
-	(*Map_Response)(nil),                     // 87: hashicorp.waypoint.sdk.Map.Response
-	(*Map_ListResponse)(nil),                 // 88: hashicorp.waypoint.sdk.Map.ListResponse
-	(*Build_Resp)(nil),                       // 89: hashicorp.waypoint.sdk.Build.Resp
-	nil,                                      // 90: hashicorp.waypoint.sdk.Build.Resp.LabelsEntry
-	(*DefaultReleaser_Resp)(nil),             // 91: hashicorp.waypoint.sdk.DefaultReleaser.Resp
-	(*Deploy_Resp)(nil),                      // 92: hashicorp.waypoint.sdk.Deploy.Resp
-	(*Destroy_Resp)(nil),                     // 93: hashicorp.waypoint.sdk.Destroy.Resp
-	(*Push_Resp)(nil),                        // 94: hashicorp.waypoint.sdk.Push.Resp
-	(*Access_Resp)(nil),                      // 95: hashicorp.waypoint.sdk.Access.Resp
-	(*Release_Resp)(nil),                     // 96: hashicorp.waypoint.sdk.Release.Resp
-	(*ConfigSource_ReadResponse)(nil),        // 97: hashicorp.waypoint.sdk.ConfigSource.ReadResponse
-	(*ConfigSource_Value)(nil),               // 98: hashicorp.waypoint.sdk.ConfigSource.Value
-	(*TaskLaunch_Resp)(nil),                  // 99: hashicorp.waypoint.sdk.TaskLaunch.Resp
-	(*TaskWatch_Resp)(nil),                   // 100: hashicorp.waypoint.sdk.TaskWatch.Resp
+	(ResourceCategoryDisplayHint)(0),         // 0: hashicorp.derrick.sdk.ResourceCategoryDisplayHint
+	(FuncSpec_Value_PrimitiveType)(0),        // 1: hashicorp.derrick.sdk.FuncSpec.Value.PrimitiveType
+	(StatusReport_Health)(0),                 // 2: hashicorp.derrick.sdk.StatusReport.Health
+	(*Args)(nil),                             // 3: hashicorp.derrick.sdk.Args
+	(*FuncSpec)(nil),                         // 4: hashicorp.derrick.sdk.FuncSpec
+	(*Config)(nil),                           // 5: hashicorp.derrick.sdk.Config
+	(*Auth)(nil),                             // 6: hashicorp.derrick.sdk.Auth
+	(*Generation)(nil),                       // 7: hashicorp.derrick.sdk.Generation
+	(*ImplementsResp)(nil),                   // 8: hashicorp.derrick.sdk.ImplementsResp
+	(*Framework)(nil),                        // 9: hashicorp.derrick.sdk.Framework
+	(*Ref)(nil),                              // 10: hashicorp.derrick.sdk.Ref
+	(*StatusReport)(nil),                     // 11: hashicorp.derrick.sdk.StatusReport
+	(*WindowSize)(nil),                       // 12: hashicorp.derrick.sdk.WindowSize
+	(*ExecSession)(nil),                      // 13: hashicorp.derrick.sdk.ExecSession
+	(*ExecResult)(nil),                       // 14: hashicorp.derrick.sdk.ExecResult
+	(*Logs)(nil),                             // 15: hashicorp.derrick.sdk.Logs
+	(*TerminalUI)(nil),                       // 16: hashicorp.derrick.sdk.TerminalUI
+	(*Map)(nil),                              // 17: hashicorp.derrick.sdk.Map
+	(*Build)(nil),                            // 18: hashicorp.derrick.sdk.Build
+	(*DefaultReleaser)(nil),                  // 19: hashicorp.derrick.sdk.DefaultReleaser
+	(*Deploy)(nil),                           // 20: hashicorp.derrick.sdk.Deploy
+	(*Destroy)(nil),                          // 21: hashicorp.derrick.sdk.Destroy
+	(*DeclaredResource)(nil),                 // 22: hashicorp.derrick.sdk.DeclaredResource
+	(*DeclaredResources)(nil),                // 23: hashicorp.derrick.sdk.DeclaredResources
+	(*DestroyedResource)(nil),                // 24: hashicorp.derrick.sdk.DestroyedResource
+	(*DestroyedResources)(nil),               // 25: hashicorp.derrick.sdk.DestroyedResources
+	(*Push)(nil),                             // 26: hashicorp.derrick.sdk.Push
+	(*Access)(nil),                           // 27: hashicorp.derrick.sdk.Access
+	(*Release)(nil),                          // 28: hashicorp.derrick.sdk.Release
+	(*ConfigSource)(nil),                     // 29: hashicorp.derrick.sdk.ConfigSource
+	(*TaskLaunch)(nil),                       // 30: hashicorp.derrick.sdk.TaskLaunch
+	(*TaskWatch)(nil),                        // 31: hashicorp.derrick.sdk.TaskWatch
+	(*Args_Source)(nil),                      // 32: hashicorp.derrick.sdk.Args.Source
+	(*Args_JobInfo)(nil),                     // 33: hashicorp.derrick.sdk.Args.JobInfo
+	(*Args_DeploymentConfig)(nil),            // 34: hashicorp.derrick.sdk.Args.DeploymentConfig
+	(*Args_DataDir)(nil),                     // 35: hashicorp.derrick.sdk.Args.DataDir
+	(*Args_Logger)(nil),                      // 36: hashicorp.derrick.sdk.Args.Logger
+	(*Args_TerminalUI)(nil),                  // 37: hashicorp.derrick.sdk.Args.TerminalUI
+	(*Args_ReleaseTargets)(nil),              // 38: hashicorp.derrick.sdk.Args.ReleaseTargets
+	(*Args_LabelSet)(nil),                    // 39: hashicorp.derrick.sdk.Args.LabelSet
+	(*Args_ExecSessionInfo)(nil),             // 40: hashicorp.derrick.sdk.Args.ExecSessionInfo
+	(*Args_LogViewer)(nil),                   // 41: hashicorp.derrick.sdk.Args.LogViewer
+	(*Args_TaskLaunchInfo)(nil),              // 42: hashicorp.derrick.sdk.Args.TaskLaunchInfo
+	(*Args_DataDir_Project)(nil),             // 43: hashicorp.derrick.sdk.Args.DataDir.Project
+	(*Args_DataDir_App)(nil),                 // 44: hashicorp.derrick.sdk.Args.DataDir.App
+	(*Args_DataDir_Component)(nil),           // 45: hashicorp.derrick.sdk.Args.DataDir.Component
+	(*Args_ReleaseTargets_Target)(nil),       // 46: hashicorp.derrick.sdk.Args.ReleaseTargets.Target
+	nil,                                      // 47: hashicorp.derrick.sdk.Args.LabelSet.LabelsEntry
+	nil,                                      // 48: hashicorp.derrick.sdk.Args.TaskLaunchInfo.EnvironmentVariablesEntry
+	(*FuncSpec_Value)(nil),                   // 49: hashicorp.derrick.sdk.FuncSpec.Value
+	(*FuncSpec_Args)(nil),                    // 50: hashicorp.derrick.sdk.FuncSpec.Args
+	(*Config_ConfigureRequest)(nil),          // 51: hashicorp.derrick.sdk.Config.ConfigureRequest
+	(*Config_StructResp)(nil),                // 52: hashicorp.derrick.sdk.Config.StructResp
+	(*Config_FieldDocumentation)(nil),        // 53: hashicorp.derrick.sdk.Config.FieldDocumentation
+	(*Config_MapperDocumentation)(nil),       // 54: hashicorp.derrick.sdk.Config.MapperDocumentation
+	(*Config_Documentation)(nil),             // 55: hashicorp.derrick.sdk.Config.Documentation
+	nil,                                      // 56: hashicorp.derrick.sdk.Config.Documentation.FieldsEntry
+	nil,                                      // 57: hashicorp.derrick.sdk.Config.Documentation.TemplateFieldsEntry
+	nil,                                      // 58: hashicorp.derrick.sdk.Config.Documentation.RequestFieldsEntry
+	(*Auth_AuthResponse)(nil),                // 59: hashicorp.derrick.sdk.Auth.AuthResponse
+	(*Generation_Resp)(nil),                  // 60: hashicorp.derrick.sdk.Generation.Resp
+	(*Framework_ResourceManagerState)(nil),   // 61: hashicorp.derrick.sdk.Framework.ResourceManagerState
+	(*Framework_ResourceState)(nil),          // 62: hashicorp.derrick.sdk.Framework.ResourceState
+	(*Ref_DeclaredResource)(nil),             // 63: hashicorp.derrick.sdk.Ref.DeclaredResource
+	(*StatusReport_Resource)(nil),            // 64: hashicorp.derrick.sdk.StatusReport.Resource
+	(*ExecSession_OutputRequest)(nil),        // 65: hashicorp.derrick.sdk.ExecSession.OutputRequest
+	(*ExecSession_InputRequest)(nil),         // 66: hashicorp.derrick.sdk.ExecSession.InputRequest
+	(*Logs_Resp)(nil),                        // 67: hashicorp.derrick.sdk.Logs.Resp
+	(*Logs_NextBatchResp)(nil),               // 68: hashicorp.derrick.sdk.Logs.NextBatchResp
+	(*Logs_Event)(nil),                       // 69: hashicorp.derrick.sdk.Logs.Event
+	(*TerminalUI_IsInteractiveResponse)(nil), // 70: hashicorp.derrick.sdk.TerminalUI.IsInteractiveResponse
+	(*TerminalUI_OutputRequest)(nil),         // 71: hashicorp.derrick.sdk.TerminalUI.OutputRequest
+	(*TerminalUI_Response)(nil),              // 72: hashicorp.derrick.sdk.TerminalUI.Response
+	(*TerminalUI_Event)(nil),                 // 73: hashicorp.derrick.sdk.TerminalUI.Event
+	(*TerminalUI_Event_Input)(nil),           // 74: hashicorp.derrick.sdk.TerminalUI.Event.Input
+	(*TerminalUI_Event_InputResp)(nil),       // 75: hashicorp.derrick.sdk.TerminalUI.Event.InputResp
+	(*TerminalUI_Event_Status)(nil),          // 76: hashicorp.derrick.sdk.TerminalUI.Event.Status
+	(*TerminalUI_Event_Line)(nil),            // 77: hashicorp.derrick.sdk.TerminalUI.Event.Line
+	(*TerminalUI_Event_Raw)(nil),             // 78: hashicorp.derrick.sdk.TerminalUI.Event.Raw
+	(*TerminalUI_Event_NamedValue)(nil),      // 79: hashicorp.derrick.sdk.TerminalUI.Event.NamedValue
+	(*TerminalUI_Event_NamedValues)(nil),     // 80: hashicorp.derrick.sdk.TerminalUI.Event.NamedValues
+	(*TerminalUI_Event_TableEntry)(nil),      // 81: hashicorp.derrick.sdk.TerminalUI.Event.TableEntry
+	(*TerminalUI_Event_TableRow)(nil),        // 82: hashicorp.derrick.sdk.TerminalUI.Event.TableRow
+	(*TerminalUI_Event_Table)(nil),           // 83: hashicorp.derrick.sdk.TerminalUI.Event.Table
+	(*TerminalUI_Event_StepGroup)(nil),       // 84: hashicorp.derrick.sdk.TerminalUI.Event.StepGroup
+	(*TerminalUI_Event_Step)(nil),            // 85: hashicorp.derrick.sdk.TerminalUI.Event.Step
+	(*Map_Request)(nil),                      // 86: hashicorp.derrick.sdk.Map.Request
+	(*Map_Response)(nil),                     // 87: hashicorp.derrick.sdk.Map.Response
+	(*Map_ListResponse)(nil),                 // 88: hashicorp.derrick.sdk.Map.ListResponse
+	(*Build_Resp)(nil),                       // 89: hashicorp.derrick.sdk.Build.Resp
+	nil,                                      // 90: hashicorp.derrick.sdk.Build.Resp.LabelsEntry
+	(*DefaultReleaser_Resp)(nil),             // 91: hashicorp.derrick.sdk.DefaultReleaser.Resp
+	(*Deploy_Resp)(nil),                      // 92: hashicorp.derrick.sdk.Deploy.Resp
+	(*Destroy_Resp)(nil),                     // 93: hashicorp.derrick.sdk.Destroy.Resp
+	(*Push_Resp)(nil),                        // 94: hashicorp.derrick.sdk.Push.Resp
+	(*Access_Resp)(nil),                      // 95: hashicorp.derrick.sdk.Access.Resp
+	(*Release_Resp)(nil),                     // 96: hashicorp.derrick.sdk.Release.Resp
+	(*ConfigSource_ReadResponse)(nil),        // 97: hashicorp.derrick.sdk.ConfigSource.ReadResponse
+	(*ConfigSource_Value)(nil),               // 98: hashicorp.derrick.sdk.ConfigSource.Value
+	(*TaskLaunch_Resp)(nil),                  // 99: hashicorp.derrick.sdk.TaskLaunch.Resp
+	(*TaskWatch_Resp)(nil),                   // 100: hashicorp.derrick.sdk.TaskWatch.Resp
 	(*timestamppb.Timestamp)(nil),            // 101: google.protobuf.Timestamp
 	(*opaqueany.Any)(nil),                    // 102: opaqueany.Any
 	(*protostructure.Struct)(nil),            // 103: protostructure.Struct
@@ -7023,268 +7023,268 @@ var file_plugin_proto_goTypes = []interface{}{
 	(*emptypb.Empty)(nil),                    // 105: google.protobuf.Empty
 }
 var file_plugin_proto_depIdxs = []int32{
-	49,  // 0: hashicorp.waypoint.sdk.FuncSpec.args:type_name -> hashicorp.waypoint.sdk.FuncSpec.Value
-	49,  // 1: hashicorp.waypoint.sdk.FuncSpec.result:type_name -> hashicorp.waypoint.sdk.FuncSpec.Value
-	64,  // 2: hashicorp.waypoint.sdk.StatusReport.resources:type_name -> hashicorp.waypoint.sdk.StatusReport.Resource
-	2,   // 3: hashicorp.waypoint.sdk.StatusReport.health:type_name -> hashicorp.waypoint.sdk.StatusReport.Health
-	101, // 4: hashicorp.waypoint.sdk.StatusReport.generated_time:type_name -> google.protobuf.Timestamp
-	102, // 5: hashicorp.waypoint.sdk.DeclaredResource.state:type_name -> opaqueany.Any
-	0,   // 6: hashicorp.waypoint.sdk.DeclaredResource.category_display_hint:type_name -> hashicorp.waypoint.sdk.ResourceCategoryDisplayHint
-	22,  // 7: hashicorp.waypoint.sdk.DeclaredResources.resources:type_name -> hashicorp.waypoint.sdk.DeclaredResource
-	102, // 8: hashicorp.waypoint.sdk.DestroyedResource.state:type_name -> opaqueany.Any
-	24,  // 9: hashicorp.waypoint.sdk.DestroyedResources.destroyed_resources:type_name -> hashicorp.waypoint.sdk.DestroyedResource
-	46,  // 10: hashicorp.waypoint.sdk.Args.ReleaseTargets.targets:type_name -> hashicorp.waypoint.sdk.Args.ReleaseTargets.Target
-	47,  // 11: hashicorp.waypoint.sdk.Args.LabelSet.labels:type_name -> hashicorp.waypoint.sdk.Args.LabelSet.LabelsEntry
-	12,  // 12: hashicorp.waypoint.sdk.Args.ExecSessionInfo.initial_window:type_name -> hashicorp.waypoint.sdk.WindowSize
-	101, // 13: hashicorp.waypoint.sdk.Args.LogViewer.starting_at:type_name -> google.protobuf.Timestamp
-	48,  // 14: hashicorp.waypoint.sdk.Args.TaskLaunchInfo.environment_variables:type_name -> hashicorp.waypoint.sdk.Args.TaskLaunchInfo.EnvironmentVariablesEntry
-	102, // 15: hashicorp.waypoint.sdk.Args.ReleaseTargets.Target.deployment:type_name -> opaqueany.Any
-	1,   // 16: hashicorp.waypoint.sdk.FuncSpec.Value.primitive_type:type_name -> hashicorp.waypoint.sdk.FuncSpec.Value.PrimitiveType
-	102, // 17: hashicorp.waypoint.sdk.FuncSpec.Value.proto_any:type_name -> opaqueany.Any
-	49,  // 18: hashicorp.waypoint.sdk.FuncSpec.Args.args:type_name -> hashicorp.waypoint.sdk.FuncSpec.Value
-	103, // 19: hashicorp.waypoint.sdk.Config.StructResp.struct:type_name -> protostructure.Struct
-	53,  // 20: hashicorp.waypoint.sdk.Config.FieldDocumentation.sub_fields:type_name -> hashicorp.waypoint.sdk.Config.FieldDocumentation
-	56,  // 21: hashicorp.waypoint.sdk.Config.Documentation.fields:type_name -> hashicorp.waypoint.sdk.Config.Documentation.FieldsEntry
-	57,  // 22: hashicorp.waypoint.sdk.Config.Documentation.template_fields:type_name -> hashicorp.waypoint.sdk.Config.Documentation.TemplateFieldsEntry
-	58,  // 23: hashicorp.waypoint.sdk.Config.Documentation.request_fields:type_name -> hashicorp.waypoint.sdk.Config.Documentation.RequestFieldsEntry
-	54,  // 24: hashicorp.waypoint.sdk.Config.Documentation.mappers:type_name -> hashicorp.waypoint.sdk.Config.MapperDocumentation
-	53,  // 25: hashicorp.waypoint.sdk.Config.Documentation.FieldsEntry.value:type_name -> hashicorp.waypoint.sdk.Config.FieldDocumentation
-	53,  // 26: hashicorp.waypoint.sdk.Config.Documentation.TemplateFieldsEntry.value:type_name -> hashicorp.waypoint.sdk.Config.FieldDocumentation
-	53,  // 27: hashicorp.waypoint.sdk.Config.Documentation.RequestFieldsEntry.value:type_name -> hashicorp.waypoint.sdk.Config.FieldDocumentation
-	62,  // 28: hashicorp.waypoint.sdk.Framework.ResourceManagerState.resources:type_name -> hashicorp.waypoint.sdk.Framework.ResourceState
-	102, // 29: hashicorp.waypoint.sdk.Framework.ResourceState.raw:type_name -> opaqueany.Any
-	63,  // 30: hashicorp.waypoint.sdk.StatusReport.Resource.declared_resource:type_name -> hashicorp.waypoint.sdk.Ref.DeclaredResource
-	0,   // 31: hashicorp.waypoint.sdk.StatusReport.Resource.category_display_hint:type_name -> hashicorp.waypoint.sdk.ResourceCategoryDisplayHint
-	101, // 32: hashicorp.waypoint.sdk.StatusReport.Resource.created_time:type_name -> google.protobuf.Timestamp
-	2,   // 33: hashicorp.waypoint.sdk.StatusReport.Resource.health:type_name -> hashicorp.waypoint.sdk.StatusReport.Health
-	12,  // 34: hashicorp.waypoint.sdk.ExecSession.InputRequest.window_size:type_name -> hashicorp.waypoint.sdk.WindowSize
-	69,  // 35: hashicorp.waypoint.sdk.Logs.NextBatchResp.events:type_name -> hashicorp.waypoint.sdk.Logs.Event
-	101, // 36: hashicorp.waypoint.sdk.Logs.Event.timestamp:type_name -> google.protobuf.Timestamp
-	75,  // 37: hashicorp.waypoint.sdk.TerminalUI.Response.input:type_name -> hashicorp.waypoint.sdk.TerminalUI.Event.InputResp
-	77,  // 38: hashicorp.waypoint.sdk.TerminalUI.Event.line:type_name -> hashicorp.waypoint.sdk.TerminalUI.Event.Line
-	76,  // 39: hashicorp.waypoint.sdk.TerminalUI.Event.status:type_name -> hashicorp.waypoint.sdk.TerminalUI.Event.Status
-	80,  // 40: hashicorp.waypoint.sdk.TerminalUI.Event.named_values:type_name -> hashicorp.waypoint.sdk.TerminalUI.Event.NamedValues
-	78,  // 41: hashicorp.waypoint.sdk.TerminalUI.Event.raw:type_name -> hashicorp.waypoint.sdk.TerminalUI.Event.Raw
-	83,  // 42: hashicorp.waypoint.sdk.TerminalUI.Event.table:type_name -> hashicorp.waypoint.sdk.TerminalUI.Event.Table
-	84,  // 43: hashicorp.waypoint.sdk.TerminalUI.Event.step_group:type_name -> hashicorp.waypoint.sdk.TerminalUI.Event.StepGroup
-	85,  // 44: hashicorp.waypoint.sdk.TerminalUI.Event.step:type_name -> hashicorp.waypoint.sdk.TerminalUI.Event.Step
-	74,  // 45: hashicorp.waypoint.sdk.TerminalUI.Event.input:type_name -> hashicorp.waypoint.sdk.TerminalUI.Event.Input
-	104, // 46: hashicorp.waypoint.sdk.TerminalUI.Event.InputResp.error:type_name -> google.rpc.Status
-	79,  // 47: hashicorp.waypoint.sdk.TerminalUI.Event.NamedValues.values:type_name -> hashicorp.waypoint.sdk.TerminalUI.Event.NamedValue
-	81,  // 48: hashicorp.waypoint.sdk.TerminalUI.Event.TableRow.entries:type_name -> hashicorp.waypoint.sdk.TerminalUI.Event.TableEntry
-	82,  // 49: hashicorp.waypoint.sdk.TerminalUI.Event.Table.rows:type_name -> hashicorp.waypoint.sdk.TerminalUI.Event.TableRow
-	50,  // 50: hashicorp.waypoint.sdk.Map.Request.args:type_name -> hashicorp.waypoint.sdk.FuncSpec.Args
-	102, // 51: hashicorp.waypoint.sdk.Map.Response.result:type_name -> opaqueany.Any
-	4,   // 52: hashicorp.waypoint.sdk.Map.ListResponse.funcs:type_name -> hashicorp.waypoint.sdk.FuncSpec
-	102, // 53: hashicorp.waypoint.sdk.Build.Resp.result:type_name -> opaqueany.Any
-	90,  // 54: hashicorp.waypoint.sdk.Build.Resp.labels:type_name -> hashicorp.waypoint.sdk.Build.Resp.LabelsEntry
-	102, // 55: hashicorp.waypoint.sdk.Deploy.Resp.result:type_name -> opaqueany.Any
-	20,  // 56: hashicorp.waypoint.sdk.Deploy.Resp.deployment:type_name -> hashicorp.waypoint.sdk.Deploy
-	23,  // 57: hashicorp.waypoint.sdk.Deploy.Resp.declared_resources:type_name -> hashicorp.waypoint.sdk.DeclaredResources
-	23,  // 58: hashicorp.waypoint.sdk.Destroy.Resp.declared_resources:type_name -> hashicorp.waypoint.sdk.DeclaredResources
-	25,  // 59: hashicorp.waypoint.sdk.Destroy.Resp.destroyed_resources:type_name -> hashicorp.waypoint.sdk.DestroyedResources
-	102, // 60: hashicorp.waypoint.sdk.Push.Resp.result:type_name -> opaqueany.Any
-	102, // 61: hashicorp.waypoint.sdk.Access.Resp.result:type_name -> opaqueany.Any
-	102, // 62: hashicorp.waypoint.sdk.Release.Resp.result:type_name -> opaqueany.Any
-	28,  // 63: hashicorp.waypoint.sdk.Release.Resp.release:type_name -> hashicorp.waypoint.sdk.Release
-	23,  // 64: hashicorp.waypoint.sdk.Release.Resp.declared_resources:type_name -> hashicorp.waypoint.sdk.DeclaredResources
-	98,  // 65: hashicorp.waypoint.sdk.ConfigSource.ReadResponse.values:type_name -> hashicorp.waypoint.sdk.ConfigSource.Value
-	104, // 66: hashicorp.waypoint.sdk.ConfigSource.Value.error:type_name -> google.rpc.Status
-	102, // 67: hashicorp.waypoint.sdk.TaskLaunch.Resp.result:type_name -> opaqueany.Any
-	65,  // 68: hashicorp.waypoint.sdk.ExecSessionService.Output:input_type -> hashicorp.waypoint.sdk.ExecSession.OutputRequest
-	105, // 69: hashicorp.waypoint.sdk.ExecSessionService.Input:input_type -> google.protobuf.Empty
-	68,  // 70: hashicorp.waypoint.sdk.LogViewer.NextLogBatch:input_type -> hashicorp.waypoint.sdk.Logs.NextBatchResp
-	71,  // 71: hashicorp.waypoint.sdk.TerminalUIService.Output:input_type -> hashicorp.waypoint.sdk.TerminalUI.OutputRequest
-	73,  // 72: hashicorp.waypoint.sdk.TerminalUIService.Events:input_type -> hashicorp.waypoint.sdk.TerminalUI.Event
-	105, // 73: hashicorp.waypoint.sdk.TerminalUIService.IsInteractive:input_type -> google.protobuf.Empty
-	105, // 74: hashicorp.waypoint.sdk.Mapper.ListMappers:input_type -> google.protobuf.Empty
-	86,  // 75: hashicorp.waypoint.sdk.Mapper.Map:input_type -> hashicorp.waypoint.sdk.Map.Request
-	105, // 76: hashicorp.waypoint.sdk.Builder.IsAuthenticator:input_type -> google.protobuf.Empty
-	50,  // 77: hashicorp.waypoint.sdk.Builder.Auth:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 78: hashicorp.waypoint.sdk.Builder.AuthSpec:input_type -> google.protobuf.Empty
-	50,  // 79: hashicorp.waypoint.sdk.Builder.ValidateAuth:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 80: hashicorp.waypoint.sdk.Builder.ValidateAuthSpec:input_type -> google.protobuf.Empty
-	105, // 81: hashicorp.waypoint.sdk.Builder.ConfigStruct:input_type -> google.protobuf.Empty
-	51,  // 82: hashicorp.waypoint.sdk.Builder.Configure:input_type -> hashicorp.waypoint.sdk.Config.ConfigureRequest
-	105, // 83: hashicorp.waypoint.sdk.Builder.Documentation:input_type -> google.protobuf.Empty
-	105, // 84: hashicorp.waypoint.sdk.Builder.BuildSpec:input_type -> google.protobuf.Empty
-	50,  // 85: hashicorp.waypoint.sdk.Builder.Build:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	50,  // 86: hashicorp.waypoint.sdk.Builder.BuildODR:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 87: hashicorp.waypoint.sdk.Builder.BuildSpecODR:input_type -> google.protobuf.Empty
-	105, // 88: hashicorp.waypoint.sdk.Platform.IsAuthenticator:input_type -> google.protobuf.Empty
-	50,  // 89: hashicorp.waypoint.sdk.Platform.Auth:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 90: hashicorp.waypoint.sdk.Platform.AuthSpec:input_type -> google.protobuf.Empty
-	50,  // 91: hashicorp.waypoint.sdk.Platform.ValidateAuth:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 92: hashicorp.waypoint.sdk.Platform.ValidateAuthSpec:input_type -> google.protobuf.Empty
-	105, // 93: hashicorp.waypoint.sdk.Platform.ConfigStruct:input_type -> google.protobuf.Empty
-	51,  // 94: hashicorp.waypoint.sdk.Platform.Configure:input_type -> hashicorp.waypoint.sdk.Config.ConfigureRequest
-	105, // 95: hashicorp.waypoint.sdk.Platform.Documentation:input_type -> google.protobuf.Empty
-	105, // 96: hashicorp.waypoint.sdk.Platform.DeploySpec:input_type -> google.protobuf.Empty
-	50,  // 97: hashicorp.waypoint.sdk.Platform.Deploy:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 98: hashicorp.waypoint.sdk.Platform.DefaultReleaserSpec:input_type -> google.protobuf.Empty
-	50,  // 99: hashicorp.waypoint.sdk.Platform.DefaultReleaser:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 100: hashicorp.waypoint.sdk.Platform.IsDestroyer:input_type -> google.protobuf.Empty
-	105, // 101: hashicorp.waypoint.sdk.Platform.DestroySpec:input_type -> google.protobuf.Empty
-	50,  // 102: hashicorp.waypoint.sdk.Platform.Destroy:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 103: hashicorp.waypoint.sdk.Platform.IsWorkspaceDestroyer:input_type -> google.protobuf.Empty
-	105, // 104: hashicorp.waypoint.sdk.Platform.DestroyWorkspaceSpec:input_type -> google.protobuf.Empty
-	50,  // 105: hashicorp.waypoint.sdk.Platform.DestroyWorkspace:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 106: hashicorp.waypoint.sdk.Platform.IsExecer:input_type -> google.protobuf.Empty
-	105, // 107: hashicorp.waypoint.sdk.Platform.ExecSpec:input_type -> google.protobuf.Empty
-	50,  // 108: hashicorp.waypoint.sdk.Platform.Exec:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 109: hashicorp.waypoint.sdk.Platform.IsLogPlatform:input_type -> google.protobuf.Empty
-	105, // 110: hashicorp.waypoint.sdk.Platform.LogsSpec:input_type -> google.protobuf.Empty
-	50,  // 111: hashicorp.waypoint.sdk.Platform.Logs:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 112: hashicorp.waypoint.sdk.Platform.IsGeneration:input_type -> google.protobuf.Empty
-	105, // 113: hashicorp.waypoint.sdk.Platform.GenerationSpec:input_type -> google.protobuf.Empty
-	50,  // 114: hashicorp.waypoint.sdk.Platform.Generation:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 115: hashicorp.waypoint.sdk.Platform.IsStatus:input_type -> google.protobuf.Empty
-	105, // 116: hashicorp.waypoint.sdk.Platform.StatusSpec:input_type -> google.protobuf.Empty
-	50,  // 117: hashicorp.waypoint.sdk.Platform.Status:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 118: hashicorp.waypoint.sdk.Registry.IsAuthenticator:input_type -> google.protobuf.Empty
-	50,  // 119: hashicorp.waypoint.sdk.Registry.Auth:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 120: hashicorp.waypoint.sdk.Registry.AuthSpec:input_type -> google.protobuf.Empty
-	50,  // 121: hashicorp.waypoint.sdk.Registry.ValidateAuth:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 122: hashicorp.waypoint.sdk.Registry.ValidateAuthSpec:input_type -> google.protobuf.Empty
-	105, // 123: hashicorp.waypoint.sdk.Registry.ConfigStruct:input_type -> google.protobuf.Empty
-	51,  // 124: hashicorp.waypoint.sdk.Registry.Configure:input_type -> hashicorp.waypoint.sdk.Config.ConfigureRequest
-	105, // 125: hashicorp.waypoint.sdk.Registry.Documentation:input_type -> google.protobuf.Empty
-	105, // 126: hashicorp.waypoint.sdk.Registry.PushSpec:input_type -> google.protobuf.Empty
-	50,  // 127: hashicorp.waypoint.sdk.Registry.Push:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 128: hashicorp.waypoint.sdk.Registry.AccessSpec:input_type -> google.protobuf.Empty
-	50,  // 129: hashicorp.waypoint.sdk.Registry.Access:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 130: hashicorp.waypoint.sdk.ReleaseManager.IsAuthenticator:input_type -> google.protobuf.Empty
-	50,  // 131: hashicorp.waypoint.sdk.ReleaseManager.Auth:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 132: hashicorp.waypoint.sdk.ReleaseManager.AuthSpec:input_type -> google.protobuf.Empty
-	50,  // 133: hashicorp.waypoint.sdk.ReleaseManager.ValidateAuth:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 134: hashicorp.waypoint.sdk.ReleaseManager.ValidateAuthSpec:input_type -> google.protobuf.Empty
-	105, // 135: hashicorp.waypoint.sdk.ReleaseManager.ConfigStruct:input_type -> google.protobuf.Empty
-	51,  // 136: hashicorp.waypoint.sdk.ReleaseManager.Configure:input_type -> hashicorp.waypoint.sdk.Config.ConfigureRequest
-	105, // 137: hashicorp.waypoint.sdk.ReleaseManager.Documentation:input_type -> google.protobuf.Empty
-	105, // 138: hashicorp.waypoint.sdk.ReleaseManager.IsDestroyer:input_type -> google.protobuf.Empty
-	105, // 139: hashicorp.waypoint.sdk.ReleaseManager.DestroySpec:input_type -> google.protobuf.Empty
-	50,  // 140: hashicorp.waypoint.sdk.ReleaseManager.Destroy:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 141: hashicorp.waypoint.sdk.ReleaseManager.IsWorkspaceDestroyer:input_type -> google.protobuf.Empty
-	105, // 142: hashicorp.waypoint.sdk.ReleaseManager.DestroyWorkspaceSpec:input_type -> google.protobuf.Empty
-	50,  // 143: hashicorp.waypoint.sdk.ReleaseManager.DestroyWorkspace:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 144: hashicorp.waypoint.sdk.ReleaseManager.ReleaseSpec:input_type -> google.protobuf.Empty
-	50,  // 145: hashicorp.waypoint.sdk.ReleaseManager.Release:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 146: hashicorp.waypoint.sdk.ReleaseManager.IsStatus:input_type -> google.protobuf.Empty
-	105, // 147: hashicorp.waypoint.sdk.ReleaseManager.StatusSpec:input_type -> google.protobuf.Empty
-	50,  // 148: hashicorp.waypoint.sdk.ReleaseManager.Status:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 149: hashicorp.waypoint.sdk.ConfigSourcer.ConfigStruct:input_type -> google.protobuf.Empty
-	51,  // 150: hashicorp.waypoint.sdk.ConfigSourcer.Configure:input_type -> hashicorp.waypoint.sdk.Config.ConfigureRequest
-	105, // 151: hashicorp.waypoint.sdk.ConfigSourcer.Documentation:input_type -> google.protobuf.Empty
-	105, // 152: hashicorp.waypoint.sdk.ConfigSourcer.ReadSpec:input_type -> google.protobuf.Empty
-	50,  // 153: hashicorp.waypoint.sdk.ConfigSourcer.Read:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 154: hashicorp.waypoint.sdk.ConfigSourcer.StopSpec:input_type -> google.protobuf.Empty
-	50,  // 155: hashicorp.waypoint.sdk.ConfigSourcer.Stop:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 156: hashicorp.waypoint.sdk.TaskLauncher.ConfigStruct:input_type -> google.protobuf.Empty
-	51,  // 157: hashicorp.waypoint.sdk.TaskLauncher.Configure:input_type -> hashicorp.waypoint.sdk.Config.ConfigureRequest
-	105, // 158: hashicorp.waypoint.sdk.TaskLauncher.Documentation:input_type -> google.protobuf.Empty
-	105, // 159: hashicorp.waypoint.sdk.TaskLauncher.StartSpec:input_type -> google.protobuf.Empty
-	105, // 160: hashicorp.waypoint.sdk.TaskLauncher.StopSpec:input_type -> google.protobuf.Empty
-	105, // 161: hashicorp.waypoint.sdk.TaskLauncher.WatchSpec:input_type -> google.protobuf.Empty
-	50,  // 162: hashicorp.waypoint.sdk.TaskLauncher.StartTask:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	50,  // 163: hashicorp.waypoint.sdk.TaskLauncher.StopTask:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	50,  // 164: hashicorp.waypoint.sdk.TaskLauncher.WatchTask:input_type -> hashicorp.waypoint.sdk.FuncSpec.Args
-	105, // 165: hashicorp.waypoint.sdk.ExecSessionService.Output:output_type -> google.protobuf.Empty
-	66,  // 166: hashicorp.waypoint.sdk.ExecSessionService.Input:output_type -> hashicorp.waypoint.sdk.ExecSession.InputRequest
-	105, // 167: hashicorp.waypoint.sdk.LogViewer.NextLogBatch:output_type -> google.protobuf.Empty
-	105, // 168: hashicorp.waypoint.sdk.TerminalUIService.Output:output_type -> google.protobuf.Empty
-	72,  // 169: hashicorp.waypoint.sdk.TerminalUIService.Events:output_type -> hashicorp.waypoint.sdk.TerminalUI.Response
-	70,  // 170: hashicorp.waypoint.sdk.TerminalUIService.IsInteractive:output_type -> hashicorp.waypoint.sdk.TerminalUI.IsInteractiveResponse
-	88,  // 171: hashicorp.waypoint.sdk.Mapper.ListMappers:output_type -> hashicorp.waypoint.sdk.Map.ListResponse
-	87,  // 172: hashicorp.waypoint.sdk.Mapper.Map:output_type -> hashicorp.waypoint.sdk.Map.Response
-	8,   // 173: hashicorp.waypoint.sdk.Builder.IsAuthenticator:output_type -> hashicorp.waypoint.sdk.ImplementsResp
-	59,  // 174: hashicorp.waypoint.sdk.Builder.Auth:output_type -> hashicorp.waypoint.sdk.Auth.AuthResponse
-	4,   // 175: hashicorp.waypoint.sdk.Builder.AuthSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	105, // 176: hashicorp.waypoint.sdk.Builder.ValidateAuth:output_type -> google.protobuf.Empty
-	4,   // 177: hashicorp.waypoint.sdk.Builder.ValidateAuthSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	52,  // 178: hashicorp.waypoint.sdk.Builder.ConfigStruct:output_type -> hashicorp.waypoint.sdk.Config.StructResp
-	105, // 179: hashicorp.waypoint.sdk.Builder.Configure:output_type -> google.protobuf.Empty
-	55,  // 180: hashicorp.waypoint.sdk.Builder.Documentation:output_type -> hashicorp.waypoint.sdk.Config.Documentation
-	4,   // 181: hashicorp.waypoint.sdk.Builder.BuildSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	89,  // 182: hashicorp.waypoint.sdk.Builder.Build:output_type -> hashicorp.waypoint.sdk.Build.Resp
-	89,  // 183: hashicorp.waypoint.sdk.Builder.BuildODR:output_type -> hashicorp.waypoint.sdk.Build.Resp
-	4,   // 184: hashicorp.waypoint.sdk.Builder.BuildSpecODR:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	8,   // 185: hashicorp.waypoint.sdk.Platform.IsAuthenticator:output_type -> hashicorp.waypoint.sdk.ImplementsResp
-	59,  // 186: hashicorp.waypoint.sdk.Platform.Auth:output_type -> hashicorp.waypoint.sdk.Auth.AuthResponse
-	4,   // 187: hashicorp.waypoint.sdk.Platform.AuthSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	105, // 188: hashicorp.waypoint.sdk.Platform.ValidateAuth:output_type -> google.protobuf.Empty
-	4,   // 189: hashicorp.waypoint.sdk.Platform.ValidateAuthSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	52,  // 190: hashicorp.waypoint.sdk.Platform.ConfigStruct:output_type -> hashicorp.waypoint.sdk.Config.StructResp
-	105, // 191: hashicorp.waypoint.sdk.Platform.Configure:output_type -> google.protobuf.Empty
-	55,  // 192: hashicorp.waypoint.sdk.Platform.Documentation:output_type -> hashicorp.waypoint.sdk.Config.Documentation
-	4,   // 193: hashicorp.waypoint.sdk.Platform.DeploySpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	92,  // 194: hashicorp.waypoint.sdk.Platform.Deploy:output_type -> hashicorp.waypoint.sdk.Deploy.Resp
-	4,   // 195: hashicorp.waypoint.sdk.Platform.DefaultReleaserSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	91,  // 196: hashicorp.waypoint.sdk.Platform.DefaultReleaser:output_type -> hashicorp.waypoint.sdk.DefaultReleaser.Resp
-	8,   // 197: hashicorp.waypoint.sdk.Platform.IsDestroyer:output_type -> hashicorp.waypoint.sdk.ImplementsResp
-	4,   // 198: hashicorp.waypoint.sdk.Platform.DestroySpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	93,  // 199: hashicorp.waypoint.sdk.Platform.Destroy:output_type -> hashicorp.waypoint.sdk.Destroy.Resp
-	8,   // 200: hashicorp.waypoint.sdk.Platform.IsWorkspaceDestroyer:output_type -> hashicorp.waypoint.sdk.ImplementsResp
-	4,   // 201: hashicorp.waypoint.sdk.Platform.DestroyWorkspaceSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	105, // 202: hashicorp.waypoint.sdk.Platform.DestroyWorkspace:output_type -> google.protobuf.Empty
-	8,   // 203: hashicorp.waypoint.sdk.Platform.IsExecer:output_type -> hashicorp.waypoint.sdk.ImplementsResp
-	4,   // 204: hashicorp.waypoint.sdk.Platform.ExecSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	14,  // 205: hashicorp.waypoint.sdk.Platform.Exec:output_type -> hashicorp.waypoint.sdk.ExecResult
-	8,   // 206: hashicorp.waypoint.sdk.Platform.IsLogPlatform:output_type -> hashicorp.waypoint.sdk.ImplementsResp
-	4,   // 207: hashicorp.waypoint.sdk.Platform.LogsSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	105, // 208: hashicorp.waypoint.sdk.Platform.Logs:output_type -> google.protobuf.Empty
-	8,   // 209: hashicorp.waypoint.sdk.Platform.IsGeneration:output_type -> hashicorp.waypoint.sdk.ImplementsResp
-	4,   // 210: hashicorp.waypoint.sdk.Platform.GenerationSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	60,  // 211: hashicorp.waypoint.sdk.Platform.Generation:output_type -> hashicorp.waypoint.sdk.Generation.Resp
-	8,   // 212: hashicorp.waypoint.sdk.Platform.IsStatus:output_type -> hashicorp.waypoint.sdk.ImplementsResp
-	4,   // 213: hashicorp.waypoint.sdk.Platform.StatusSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	11,  // 214: hashicorp.waypoint.sdk.Platform.Status:output_type -> hashicorp.waypoint.sdk.StatusReport
-	8,   // 215: hashicorp.waypoint.sdk.Registry.IsAuthenticator:output_type -> hashicorp.waypoint.sdk.ImplementsResp
-	59,  // 216: hashicorp.waypoint.sdk.Registry.Auth:output_type -> hashicorp.waypoint.sdk.Auth.AuthResponse
-	4,   // 217: hashicorp.waypoint.sdk.Registry.AuthSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	105, // 218: hashicorp.waypoint.sdk.Registry.ValidateAuth:output_type -> google.protobuf.Empty
-	4,   // 219: hashicorp.waypoint.sdk.Registry.ValidateAuthSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	52,  // 220: hashicorp.waypoint.sdk.Registry.ConfigStruct:output_type -> hashicorp.waypoint.sdk.Config.StructResp
-	105, // 221: hashicorp.waypoint.sdk.Registry.Configure:output_type -> google.protobuf.Empty
-	55,  // 222: hashicorp.waypoint.sdk.Registry.Documentation:output_type -> hashicorp.waypoint.sdk.Config.Documentation
-	4,   // 223: hashicorp.waypoint.sdk.Registry.PushSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	94,  // 224: hashicorp.waypoint.sdk.Registry.Push:output_type -> hashicorp.waypoint.sdk.Push.Resp
-	4,   // 225: hashicorp.waypoint.sdk.Registry.AccessSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	95,  // 226: hashicorp.waypoint.sdk.Registry.Access:output_type -> hashicorp.waypoint.sdk.Access.Resp
-	8,   // 227: hashicorp.waypoint.sdk.ReleaseManager.IsAuthenticator:output_type -> hashicorp.waypoint.sdk.ImplementsResp
-	59,  // 228: hashicorp.waypoint.sdk.ReleaseManager.Auth:output_type -> hashicorp.waypoint.sdk.Auth.AuthResponse
-	4,   // 229: hashicorp.waypoint.sdk.ReleaseManager.AuthSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	105, // 230: hashicorp.waypoint.sdk.ReleaseManager.ValidateAuth:output_type -> google.protobuf.Empty
-	4,   // 231: hashicorp.waypoint.sdk.ReleaseManager.ValidateAuthSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	52,  // 232: hashicorp.waypoint.sdk.ReleaseManager.ConfigStruct:output_type -> hashicorp.waypoint.sdk.Config.StructResp
-	105, // 233: hashicorp.waypoint.sdk.ReleaseManager.Configure:output_type -> google.protobuf.Empty
-	55,  // 234: hashicorp.waypoint.sdk.ReleaseManager.Documentation:output_type -> hashicorp.waypoint.sdk.Config.Documentation
-	8,   // 235: hashicorp.waypoint.sdk.ReleaseManager.IsDestroyer:output_type -> hashicorp.waypoint.sdk.ImplementsResp
-	4,   // 236: hashicorp.waypoint.sdk.ReleaseManager.DestroySpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	93,  // 237: hashicorp.waypoint.sdk.ReleaseManager.Destroy:output_type -> hashicorp.waypoint.sdk.Destroy.Resp
-	8,   // 238: hashicorp.waypoint.sdk.ReleaseManager.IsWorkspaceDestroyer:output_type -> hashicorp.waypoint.sdk.ImplementsResp
-	4,   // 239: hashicorp.waypoint.sdk.ReleaseManager.DestroyWorkspaceSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	105, // 240: hashicorp.waypoint.sdk.ReleaseManager.DestroyWorkspace:output_type -> google.protobuf.Empty
-	4,   // 241: hashicorp.waypoint.sdk.ReleaseManager.ReleaseSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	96,  // 242: hashicorp.waypoint.sdk.ReleaseManager.Release:output_type -> hashicorp.waypoint.sdk.Release.Resp
-	8,   // 243: hashicorp.waypoint.sdk.ReleaseManager.IsStatus:output_type -> hashicorp.waypoint.sdk.ImplementsResp
-	4,   // 244: hashicorp.waypoint.sdk.ReleaseManager.StatusSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	11,  // 245: hashicorp.waypoint.sdk.ReleaseManager.Status:output_type -> hashicorp.waypoint.sdk.StatusReport
-	52,  // 246: hashicorp.waypoint.sdk.ConfigSourcer.ConfigStruct:output_type -> hashicorp.waypoint.sdk.Config.StructResp
-	105, // 247: hashicorp.waypoint.sdk.ConfigSourcer.Configure:output_type -> google.protobuf.Empty
-	55,  // 248: hashicorp.waypoint.sdk.ConfigSourcer.Documentation:output_type -> hashicorp.waypoint.sdk.Config.Documentation
-	4,   // 249: hashicorp.waypoint.sdk.ConfigSourcer.ReadSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	97,  // 250: hashicorp.waypoint.sdk.ConfigSourcer.Read:output_type -> hashicorp.waypoint.sdk.ConfigSource.ReadResponse
-	4,   // 251: hashicorp.waypoint.sdk.ConfigSourcer.StopSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	105, // 252: hashicorp.waypoint.sdk.ConfigSourcer.Stop:output_type -> google.protobuf.Empty
-	52,  // 253: hashicorp.waypoint.sdk.TaskLauncher.ConfigStruct:output_type -> hashicorp.waypoint.sdk.Config.StructResp
-	105, // 254: hashicorp.waypoint.sdk.TaskLauncher.Configure:output_type -> google.protobuf.Empty
-	55,  // 255: hashicorp.waypoint.sdk.TaskLauncher.Documentation:output_type -> hashicorp.waypoint.sdk.Config.Documentation
-	4,   // 256: hashicorp.waypoint.sdk.TaskLauncher.StartSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	4,   // 257: hashicorp.waypoint.sdk.TaskLauncher.StopSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	4,   // 258: hashicorp.waypoint.sdk.TaskLauncher.WatchSpec:output_type -> hashicorp.waypoint.sdk.FuncSpec
-	99,  // 259: hashicorp.waypoint.sdk.TaskLauncher.StartTask:output_type -> hashicorp.waypoint.sdk.TaskLaunch.Resp
-	105, // 260: hashicorp.waypoint.sdk.TaskLauncher.StopTask:output_type -> google.protobuf.Empty
-	100, // 261: hashicorp.waypoint.sdk.TaskLauncher.WatchTask:output_type -> hashicorp.waypoint.sdk.TaskWatch.Resp
+	49,  // 0: hashicorp.derrick.sdk.FuncSpec.args:type_name -> hashicorp.derrick.sdk.FuncSpec.Value
+	49,  // 1: hashicorp.derrick.sdk.FuncSpec.result:type_name -> hashicorp.derrick.sdk.FuncSpec.Value
+	64,  // 2: hashicorp.derrick.sdk.StatusReport.resources:type_name -> hashicorp.derrick.sdk.StatusReport.Resource
+	2,   // 3: hashicorp.derrick.sdk.StatusReport.health:type_name -> hashicorp.derrick.sdk.StatusReport.Health
+	101, // 4: hashicorp.derrick.sdk.StatusReport.generated_time:type_name -> google.protobuf.Timestamp
+	102, // 5: hashicorp.derrick.sdk.DeclaredResource.state:type_name -> opaqueany.Any
+	0,   // 6: hashicorp.derrick.sdk.DeclaredResource.category_display_hint:type_name -> hashicorp.derrick.sdk.ResourceCategoryDisplayHint
+	22,  // 7: hashicorp.derrick.sdk.DeclaredResources.resources:type_name -> hashicorp.derrick.sdk.DeclaredResource
+	102, // 8: hashicorp.derrick.sdk.DestroyedResource.state:type_name -> opaqueany.Any
+	24,  // 9: hashicorp.derrick.sdk.DestroyedResources.destroyed_resources:type_name -> hashicorp.derrick.sdk.DestroyedResource
+	46,  // 10: hashicorp.derrick.sdk.Args.ReleaseTargets.targets:type_name -> hashicorp.derrick.sdk.Args.ReleaseTargets.Target
+	47,  // 11: hashicorp.derrick.sdk.Args.LabelSet.labels:type_name -> hashicorp.derrick.sdk.Args.LabelSet.LabelsEntry
+	12,  // 12: hashicorp.derrick.sdk.Args.ExecSessionInfo.initial_window:type_name -> hashicorp.derrick.sdk.WindowSize
+	101, // 13: hashicorp.derrick.sdk.Args.LogViewer.starting_at:type_name -> google.protobuf.Timestamp
+	48,  // 14: hashicorp.derrick.sdk.Args.TaskLaunchInfo.environment_variables:type_name -> hashicorp.derrick.sdk.Args.TaskLaunchInfo.EnvironmentVariablesEntry
+	102, // 15: hashicorp.derrick.sdk.Args.ReleaseTargets.Target.deployment:type_name -> opaqueany.Any
+	1,   // 16: hashicorp.derrick.sdk.FuncSpec.Value.primitive_type:type_name -> hashicorp.derrick.sdk.FuncSpec.Value.PrimitiveType
+	102, // 17: hashicorp.derrick.sdk.FuncSpec.Value.proto_any:type_name -> opaqueany.Any
+	49,  // 18: hashicorp.derrick.sdk.FuncSpec.Args.args:type_name -> hashicorp.derrick.sdk.FuncSpec.Value
+	103, // 19: hashicorp.derrick.sdk.Config.StructResp.struct:type_name -> protostructure.Struct
+	53,  // 20: hashicorp.derrick.sdk.Config.FieldDocumentation.sub_fields:type_name -> hashicorp.derrick.sdk.Config.FieldDocumentation
+	56,  // 21: hashicorp.derrick.sdk.Config.Documentation.fields:type_name -> hashicorp.derrick.sdk.Config.Documentation.FieldsEntry
+	57,  // 22: hashicorp.derrick.sdk.Config.Documentation.template_fields:type_name -> hashicorp.derrick.sdk.Config.Documentation.TemplateFieldsEntry
+	58,  // 23: hashicorp.derrick.sdk.Config.Documentation.request_fields:type_name -> hashicorp.derrick.sdk.Config.Documentation.RequestFieldsEntry
+	54,  // 24: hashicorp.derrick.sdk.Config.Documentation.mappers:type_name -> hashicorp.derrick.sdk.Config.MapperDocumentation
+	53,  // 25: hashicorp.derrick.sdk.Config.Documentation.FieldsEntry.value:type_name -> hashicorp.derrick.sdk.Config.FieldDocumentation
+	53,  // 26: hashicorp.derrick.sdk.Config.Documentation.TemplateFieldsEntry.value:type_name -> hashicorp.derrick.sdk.Config.FieldDocumentation
+	53,  // 27: hashicorp.derrick.sdk.Config.Documentation.RequestFieldsEntry.value:type_name -> hashicorp.derrick.sdk.Config.FieldDocumentation
+	62,  // 28: hashicorp.derrick.sdk.Framework.ResourceManagerState.resources:type_name -> hashicorp.derrick.sdk.Framework.ResourceState
+	102, // 29: hashicorp.derrick.sdk.Framework.ResourceState.raw:type_name -> opaqueany.Any
+	63,  // 30: hashicorp.derrick.sdk.StatusReport.Resource.declared_resource:type_name -> hashicorp.derrick.sdk.Ref.DeclaredResource
+	0,   // 31: hashicorp.derrick.sdk.StatusReport.Resource.category_display_hint:type_name -> hashicorp.derrick.sdk.ResourceCategoryDisplayHint
+	101, // 32: hashicorp.derrick.sdk.StatusReport.Resource.created_time:type_name -> google.protobuf.Timestamp
+	2,   // 33: hashicorp.derrick.sdk.StatusReport.Resource.health:type_name -> hashicorp.derrick.sdk.StatusReport.Health
+	12,  // 34: hashicorp.derrick.sdk.ExecSession.InputRequest.window_size:type_name -> hashicorp.derrick.sdk.WindowSize
+	69,  // 35: hashicorp.derrick.sdk.Logs.NextBatchResp.events:type_name -> hashicorp.derrick.sdk.Logs.Event
+	101, // 36: hashicorp.derrick.sdk.Logs.Event.timestamp:type_name -> google.protobuf.Timestamp
+	75,  // 37: hashicorp.derrick.sdk.TerminalUI.Response.input:type_name -> hashicorp.derrick.sdk.TerminalUI.Event.InputResp
+	77,  // 38: hashicorp.derrick.sdk.TerminalUI.Event.line:type_name -> hashicorp.derrick.sdk.TerminalUI.Event.Line
+	76,  // 39: hashicorp.derrick.sdk.TerminalUI.Event.status:type_name -> hashicorp.derrick.sdk.TerminalUI.Event.Status
+	80,  // 40: hashicorp.derrick.sdk.TerminalUI.Event.named_values:type_name -> hashicorp.derrick.sdk.TerminalUI.Event.NamedValues
+	78,  // 41: hashicorp.derrick.sdk.TerminalUI.Event.raw:type_name -> hashicorp.derrick.sdk.TerminalUI.Event.Raw
+	83,  // 42: hashicorp.derrick.sdk.TerminalUI.Event.table:type_name -> hashicorp.derrick.sdk.TerminalUI.Event.Table
+	84,  // 43: hashicorp.derrick.sdk.TerminalUI.Event.step_group:type_name -> hashicorp.derrick.sdk.TerminalUI.Event.StepGroup
+	85,  // 44: hashicorp.derrick.sdk.TerminalUI.Event.step:type_name -> hashicorp.derrick.sdk.TerminalUI.Event.Step
+	74,  // 45: hashicorp.derrick.sdk.TerminalUI.Event.input:type_name -> hashicorp.derrick.sdk.TerminalUI.Event.Input
+	104, // 46: hashicorp.derrick.sdk.TerminalUI.Event.InputResp.error:type_name -> google.rpc.Status
+	79,  // 47: hashicorp.derrick.sdk.TerminalUI.Event.NamedValues.values:type_name -> hashicorp.derrick.sdk.TerminalUI.Event.NamedValue
+	81,  // 48: hashicorp.derrick.sdk.TerminalUI.Event.TableRow.entries:type_name -> hashicorp.derrick.sdk.TerminalUI.Event.TableEntry
+	82,  // 49: hashicorp.derrick.sdk.TerminalUI.Event.Table.rows:type_name -> hashicorp.derrick.sdk.TerminalUI.Event.TableRow
+	50,  // 50: hashicorp.derrick.sdk.Map.Request.args:type_name -> hashicorp.derrick.sdk.FuncSpec.Args
+	102, // 51: hashicorp.derrick.sdk.Map.Response.result:type_name -> opaqueany.Any
+	4,   // 52: hashicorp.derrick.sdk.Map.ListResponse.funcs:type_name -> hashicorp.derrick.sdk.FuncSpec
+	102, // 53: hashicorp.derrick.sdk.Build.Resp.result:type_name -> opaqueany.Any
+	90,  // 54: hashicorp.derrick.sdk.Build.Resp.labels:type_name -> hashicorp.derrick.sdk.Build.Resp.LabelsEntry
+	102, // 55: hashicorp.derrick.sdk.Deploy.Resp.result:type_name -> opaqueany.Any
+	20,  // 56: hashicorp.derrick.sdk.Deploy.Resp.deployment:type_name -> hashicorp.derrick.sdk.Deploy
+	23,  // 57: hashicorp.derrick.sdk.Deploy.Resp.declared_resources:type_name -> hashicorp.derrick.sdk.DeclaredResources
+	23,  // 58: hashicorp.derrick.sdk.Destroy.Resp.declared_resources:type_name -> hashicorp.derrick.sdk.DeclaredResources
+	25,  // 59: hashicorp.derrick.sdk.Destroy.Resp.destroyed_resources:type_name -> hashicorp.derrick.sdk.DestroyedResources
+	102, // 60: hashicorp.derrick.sdk.Push.Resp.result:type_name -> opaqueany.Any
+	102, // 61: hashicorp.derrick.sdk.Access.Resp.result:type_name -> opaqueany.Any
+	102, // 62: hashicorp.derrick.sdk.Release.Resp.result:type_name -> opaqueany.Any
+	28,  // 63: hashicorp.derrick.sdk.Release.Resp.release:type_name -> hashicorp.derrick.sdk.Release
+	23,  // 64: hashicorp.derrick.sdk.Release.Resp.declared_resources:type_name -> hashicorp.derrick.sdk.DeclaredResources
+	98,  // 65: hashicorp.derrick.sdk.ConfigSource.ReadResponse.values:type_name -> hashicorp.derrick.sdk.ConfigSource.Value
+	104, // 66: hashicorp.derrick.sdk.ConfigSource.Value.error:type_name -> google.rpc.Status
+	102, // 67: hashicorp.derrick.sdk.TaskLaunch.Resp.result:type_name -> opaqueany.Any
+	65,  // 68: hashicorp.derrick.sdk.ExecSessionService.Output:input_type -> hashicorp.derrick.sdk.ExecSession.OutputRequest
+	105, // 69: hashicorp.derrick.sdk.ExecSessionService.Input:input_type -> google.protobuf.Empty
+	68,  // 70: hashicorp.derrick.sdk.LogViewer.NextLogBatch:input_type -> hashicorp.derrick.sdk.Logs.NextBatchResp
+	71,  // 71: hashicorp.derrick.sdk.TerminalUIService.Output:input_type -> hashicorp.derrick.sdk.TerminalUI.OutputRequest
+	73,  // 72: hashicorp.derrick.sdk.TerminalUIService.Events:input_type -> hashicorp.derrick.sdk.TerminalUI.Event
+	105, // 73: hashicorp.derrick.sdk.TerminalUIService.IsInteractive:input_type -> google.protobuf.Empty
+	105, // 74: hashicorp.derrick.sdk.Mapper.ListMappers:input_type -> google.protobuf.Empty
+	86,  // 75: hashicorp.derrick.sdk.Mapper.Map:input_type -> hashicorp.derrick.sdk.Map.Request
+	105, // 76: hashicorp.derrick.sdk.Builder.IsAuthenticator:input_type -> google.protobuf.Empty
+	50,  // 77: hashicorp.derrick.sdk.Builder.Auth:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 78: hashicorp.derrick.sdk.Builder.AuthSpec:input_type -> google.protobuf.Empty
+	50,  // 79: hashicorp.derrick.sdk.Builder.ValidateAuth:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 80: hashicorp.derrick.sdk.Builder.ValidateAuthSpec:input_type -> google.protobuf.Empty
+	105, // 81: hashicorp.derrick.sdk.Builder.ConfigStruct:input_type -> google.protobuf.Empty
+	51,  // 82: hashicorp.derrick.sdk.Builder.Configure:input_type -> hashicorp.derrick.sdk.Config.ConfigureRequest
+	105, // 83: hashicorp.derrick.sdk.Builder.Documentation:input_type -> google.protobuf.Empty
+	105, // 84: hashicorp.derrick.sdk.Builder.BuildSpec:input_type -> google.protobuf.Empty
+	50,  // 85: hashicorp.derrick.sdk.Builder.Build:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	50,  // 86: hashicorp.derrick.sdk.Builder.BuildODR:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 87: hashicorp.derrick.sdk.Builder.BuildSpecODR:input_type -> google.protobuf.Empty
+	105, // 88: hashicorp.derrick.sdk.Platform.IsAuthenticator:input_type -> google.protobuf.Empty
+	50,  // 89: hashicorp.derrick.sdk.Platform.Auth:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 90: hashicorp.derrick.sdk.Platform.AuthSpec:input_type -> google.protobuf.Empty
+	50,  // 91: hashicorp.derrick.sdk.Platform.ValidateAuth:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 92: hashicorp.derrick.sdk.Platform.ValidateAuthSpec:input_type -> google.protobuf.Empty
+	105, // 93: hashicorp.derrick.sdk.Platform.ConfigStruct:input_type -> google.protobuf.Empty
+	51,  // 94: hashicorp.derrick.sdk.Platform.Configure:input_type -> hashicorp.derrick.sdk.Config.ConfigureRequest
+	105, // 95: hashicorp.derrick.sdk.Platform.Documentation:input_type -> google.protobuf.Empty
+	105, // 96: hashicorp.derrick.sdk.Platform.DeploySpec:input_type -> google.protobuf.Empty
+	50,  // 97: hashicorp.derrick.sdk.Platform.Deploy:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 98: hashicorp.derrick.sdk.Platform.DefaultReleaserSpec:input_type -> google.protobuf.Empty
+	50,  // 99: hashicorp.derrick.sdk.Platform.DefaultReleaser:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 100: hashicorp.derrick.sdk.Platform.IsDestroyer:input_type -> google.protobuf.Empty
+	105, // 101: hashicorp.derrick.sdk.Platform.DestroySpec:input_type -> google.protobuf.Empty
+	50,  // 102: hashicorp.derrick.sdk.Platform.Destroy:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 103: hashicorp.derrick.sdk.Platform.IsWorkspaceDestroyer:input_type -> google.protobuf.Empty
+	105, // 104: hashicorp.derrick.sdk.Platform.DestroyWorkspaceSpec:input_type -> google.protobuf.Empty
+	50,  // 105: hashicorp.derrick.sdk.Platform.DestroyWorkspace:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 106: hashicorp.derrick.sdk.Platform.IsExecer:input_type -> google.protobuf.Empty
+	105, // 107: hashicorp.derrick.sdk.Platform.ExecSpec:input_type -> google.protobuf.Empty
+	50,  // 108: hashicorp.derrick.sdk.Platform.Exec:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 109: hashicorp.derrick.sdk.Platform.IsLogPlatform:input_type -> google.protobuf.Empty
+	105, // 110: hashicorp.derrick.sdk.Platform.LogsSpec:input_type -> google.protobuf.Empty
+	50,  // 111: hashicorp.derrick.sdk.Platform.Logs:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 112: hashicorp.derrick.sdk.Platform.IsGeneration:input_type -> google.protobuf.Empty
+	105, // 113: hashicorp.derrick.sdk.Platform.GenerationSpec:input_type -> google.protobuf.Empty
+	50,  // 114: hashicorp.derrick.sdk.Platform.Generation:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 115: hashicorp.derrick.sdk.Platform.IsStatus:input_type -> google.protobuf.Empty
+	105, // 116: hashicorp.derrick.sdk.Platform.StatusSpec:input_type -> google.protobuf.Empty
+	50,  // 117: hashicorp.derrick.sdk.Platform.Status:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 118: hashicorp.derrick.sdk.Registry.IsAuthenticator:input_type -> google.protobuf.Empty
+	50,  // 119: hashicorp.derrick.sdk.Registry.Auth:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 120: hashicorp.derrick.sdk.Registry.AuthSpec:input_type -> google.protobuf.Empty
+	50,  // 121: hashicorp.derrick.sdk.Registry.ValidateAuth:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 122: hashicorp.derrick.sdk.Registry.ValidateAuthSpec:input_type -> google.protobuf.Empty
+	105, // 123: hashicorp.derrick.sdk.Registry.ConfigStruct:input_type -> google.protobuf.Empty
+	51,  // 124: hashicorp.derrick.sdk.Registry.Configure:input_type -> hashicorp.derrick.sdk.Config.ConfigureRequest
+	105, // 125: hashicorp.derrick.sdk.Registry.Documentation:input_type -> google.protobuf.Empty
+	105, // 126: hashicorp.derrick.sdk.Registry.PushSpec:input_type -> google.protobuf.Empty
+	50,  // 127: hashicorp.derrick.sdk.Registry.Push:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 128: hashicorp.derrick.sdk.Registry.AccessSpec:input_type -> google.protobuf.Empty
+	50,  // 129: hashicorp.derrick.sdk.Registry.Access:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 130: hashicorp.derrick.sdk.ReleaseManager.IsAuthenticator:input_type -> google.protobuf.Empty
+	50,  // 131: hashicorp.derrick.sdk.ReleaseManager.Auth:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 132: hashicorp.derrick.sdk.ReleaseManager.AuthSpec:input_type -> google.protobuf.Empty
+	50,  // 133: hashicorp.derrick.sdk.ReleaseManager.ValidateAuth:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 134: hashicorp.derrick.sdk.ReleaseManager.ValidateAuthSpec:input_type -> google.protobuf.Empty
+	105, // 135: hashicorp.derrick.sdk.ReleaseManager.ConfigStruct:input_type -> google.protobuf.Empty
+	51,  // 136: hashicorp.derrick.sdk.ReleaseManager.Configure:input_type -> hashicorp.derrick.sdk.Config.ConfigureRequest
+	105, // 137: hashicorp.derrick.sdk.ReleaseManager.Documentation:input_type -> google.protobuf.Empty
+	105, // 138: hashicorp.derrick.sdk.ReleaseManager.IsDestroyer:input_type -> google.protobuf.Empty
+	105, // 139: hashicorp.derrick.sdk.ReleaseManager.DestroySpec:input_type -> google.protobuf.Empty
+	50,  // 140: hashicorp.derrick.sdk.ReleaseManager.Destroy:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 141: hashicorp.derrick.sdk.ReleaseManager.IsWorkspaceDestroyer:input_type -> google.protobuf.Empty
+	105, // 142: hashicorp.derrick.sdk.ReleaseManager.DestroyWorkspaceSpec:input_type -> google.protobuf.Empty
+	50,  // 143: hashicorp.derrick.sdk.ReleaseManager.DestroyWorkspace:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 144: hashicorp.derrick.sdk.ReleaseManager.ReleaseSpec:input_type -> google.protobuf.Empty
+	50,  // 145: hashicorp.derrick.sdk.ReleaseManager.Release:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 146: hashicorp.derrick.sdk.ReleaseManager.IsStatus:input_type -> google.protobuf.Empty
+	105, // 147: hashicorp.derrick.sdk.ReleaseManager.StatusSpec:input_type -> google.protobuf.Empty
+	50,  // 148: hashicorp.derrick.sdk.ReleaseManager.Status:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 149: hashicorp.derrick.sdk.ConfigSourcer.ConfigStruct:input_type -> google.protobuf.Empty
+	51,  // 150: hashicorp.derrick.sdk.ConfigSourcer.Configure:input_type -> hashicorp.derrick.sdk.Config.ConfigureRequest
+	105, // 151: hashicorp.derrick.sdk.ConfigSourcer.Documentation:input_type -> google.protobuf.Empty
+	105, // 152: hashicorp.derrick.sdk.ConfigSourcer.ReadSpec:input_type -> google.protobuf.Empty
+	50,  // 153: hashicorp.derrick.sdk.ConfigSourcer.Read:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 154: hashicorp.derrick.sdk.ConfigSourcer.StopSpec:input_type -> google.protobuf.Empty
+	50,  // 155: hashicorp.derrick.sdk.ConfigSourcer.Stop:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 156: hashicorp.derrick.sdk.TaskLauncher.ConfigStruct:input_type -> google.protobuf.Empty
+	51,  // 157: hashicorp.derrick.sdk.TaskLauncher.Configure:input_type -> hashicorp.derrick.sdk.Config.ConfigureRequest
+	105, // 158: hashicorp.derrick.sdk.TaskLauncher.Documentation:input_type -> google.protobuf.Empty
+	105, // 159: hashicorp.derrick.sdk.TaskLauncher.StartSpec:input_type -> google.protobuf.Empty
+	105, // 160: hashicorp.derrick.sdk.TaskLauncher.StopSpec:input_type -> google.protobuf.Empty
+	105, // 161: hashicorp.derrick.sdk.TaskLauncher.WatchSpec:input_type -> google.protobuf.Empty
+	50,  // 162: hashicorp.derrick.sdk.TaskLauncher.StartTask:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	50,  // 163: hashicorp.derrick.sdk.TaskLauncher.StopTask:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	50,  // 164: hashicorp.derrick.sdk.TaskLauncher.WatchTask:input_type -> hashicorp.derrick.sdk.FuncSpec.Args
+	105, // 165: hashicorp.derrick.sdk.ExecSessionService.Output:output_type -> google.protobuf.Empty
+	66,  // 166: hashicorp.derrick.sdk.ExecSessionService.Input:output_type -> hashicorp.derrick.sdk.ExecSession.InputRequest
+	105, // 167: hashicorp.derrick.sdk.LogViewer.NextLogBatch:output_type -> google.protobuf.Empty
+	105, // 168: hashicorp.derrick.sdk.TerminalUIService.Output:output_type -> google.protobuf.Empty
+	72,  // 169: hashicorp.derrick.sdk.TerminalUIService.Events:output_type -> hashicorp.derrick.sdk.TerminalUI.Response
+	70,  // 170: hashicorp.derrick.sdk.TerminalUIService.IsInteractive:output_type -> hashicorp.derrick.sdk.TerminalUI.IsInteractiveResponse
+	88,  // 171: hashicorp.derrick.sdk.Mapper.ListMappers:output_type -> hashicorp.derrick.sdk.Map.ListResponse
+	87,  // 172: hashicorp.derrick.sdk.Mapper.Map:output_type -> hashicorp.derrick.sdk.Map.Response
+	8,   // 173: hashicorp.derrick.sdk.Builder.IsAuthenticator:output_type -> hashicorp.derrick.sdk.ImplementsResp
+	59,  // 174: hashicorp.derrick.sdk.Builder.Auth:output_type -> hashicorp.derrick.sdk.Auth.AuthResponse
+	4,   // 175: hashicorp.derrick.sdk.Builder.AuthSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	105, // 176: hashicorp.derrick.sdk.Builder.ValidateAuth:output_type -> google.protobuf.Empty
+	4,   // 177: hashicorp.derrick.sdk.Builder.ValidateAuthSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	52,  // 178: hashicorp.derrick.sdk.Builder.ConfigStruct:output_type -> hashicorp.derrick.sdk.Config.StructResp
+	105, // 179: hashicorp.derrick.sdk.Builder.Configure:output_type -> google.protobuf.Empty
+	55,  // 180: hashicorp.derrick.sdk.Builder.Documentation:output_type -> hashicorp.derrick.sdk.Config.Documentation
+	4,   // 181: hashicorp.derrick.sdk.Builder.BuildSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	89,  // 182: hashicorp.derrick.sdk.Builder.Build:output_type -> hashicorp.derrick.sdk.Build.Resp
+	89,  // 183: hashicorp.derrick.sdk.Builder.BuildODR:output_type -> hashicorp.derrick.sdk.Build.Resp
+	4,   // 184: hashicorp.derrick.sdk.Builder.BuildSpecODR:output_type -> hashicorp.derrick.sdk.FuncSpec
+	8,   // 185: hashicorp.derrick.sdk.Platform.IsAuthenticator:output_type -> hashicorp.derrick.sdk.ImplementsResp
+	59,  // 186: hashicorp.derrick.sdk.Platform.Auth:output_type -> hashicorp.derrick.sdk.Auth.AuthResponse
+	4,   // 187: hashicorp.derrick.sdk.Platform.AuthSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	105, // 188: hashicorp.derrick.sdk.Platform.ValidateAuth:output_type -> google.protobuf.Empty
+	4,   // 189: hashicorp.derrick.sdk.Platform.ValidateAuthSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	52,  // 190: hashicorp.derrick.sdk.Platform.ConfigStruct:output_type -> hashicorp.derrick.sdk.Config.StructResp
+	105, // 191: hashicorp.derrick.sdk.Platform.Configure:output_type -> google.protobuf.Empty
+	55,  // 192: hashicorp.derrick.sdk.Platform.Documentation:output_type -> hashicorp.derrick.sdk.Config.Documentation
+	4,   // 193: hashicorp.derrick.sdk.Platform.DeploySpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	92,  // 194: hashicorp.derrick.sdk.Platform.Deploy:output_type -> hashicorp.derrick.sdk.Deploy.Resp
+	4,   // 195: hashicorp.derrick.sdk.Platform.DefaultReleaserSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	91,  // 196: hashicorp.derrick.sdk.Platform.DefaultReleaser:output_type -> hashicorp.derrick.sdk.DefaultReleaser.Resp
+	8,   // 197: hashicorp.derrick.sdk.Platform.IsDestroyer:output_type -> hashicorp.derrick.sdk.ImplementsResp
+	4,   // 198: hashicorp.derrick.sdk.Platform.DestroySpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	93,  // 199: hashicorp.derrick.sdk.Platform.Destroy:output_type -> hashicorp.derrick.sdk.Destroy.Resp
+	8,   // 200: hashicorp.derrick.sdk.Platform.IsWorkspaceDestroyer:output_type -> hashicorp.derrick.sdk.ImplementsResp
+	4,   // 201: hashicorp.derrick.sdk.Platform.DestroyWorkspaceSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	105, // 202: hashicorp.derrick.sdk.Platform.DestroyWorkspace:output_type -> google.protobuf.Empty
+	8,   // 203: hashicorp.derrick.sdk.Platform.IsExecer:output_type -> hashicorp.derrick.sdk.ImplementsResp
+	4,   // 204: hashicorp.derrick.sdk.Platform.ExecSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	14,  // 205: hashicorp.derrick.sdk.Platform.Exec:output_type -> hashicorp.derrick.sdk.ExecResult
+	8,   // 206: hashicorp.derrick.sdk.Platform.IsLogPlatform:output_type -> hashicorp.derrick.sdk.ImplementsResp
+	4,   // 207: hashicorp.derrick.sdk.Platform.LogsSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	105, // 208: hashicorp.derrick.sdk.Platform.Logs:output_type -> google.protobuf.Empty
+	8,   // 209: hashicorp.derrick.sdk.Platform.IsGeneration:output_type -> hashicorp.derrick.sdk.ImplementsResp
+	4,   // 210: hashicorp.derrick.sdk.Platform.GenerationSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	60,  // 211: hashicorp.derrick.sdk.Platform.Generation:output_type -> hashicorp.derrick.sdk.Generation.Resp
+	8,   // 212: hashicorp.derrick.sdk.Platform.IsStatus:output_type -> hashicorp.derrick.sdk.ImplementsResp
+	4,   // 213: hashicorp.derrick.sdk.Platform.StatusSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	11,  // 214: hashicorp.derrick.sdk.Platform.Status:output_type -> hashicorp.derrick.sdk.StatusReport
+	8,   // 215: hashicorp.derrick.sdk.Registry.IsAuthenticator:output_type -> hashicorp.derrick.sdk.ImplementsResp
+	59,  // 216: hashicorp.derrick.sdk.Registry.Auth:output_type -> hashicorp.derrick.sdk.Auth.AuthResponse
+	4,   // 217: hashicorp.derrick.sdk.Registry.AuthSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	105, // 218: hashicorp.derrick.sdk.Registry.ValidateAuth:output_type -> google.protobuf.Empty
+	4,   // 219: hashicorp.derrick.sdk.Registry.ValidateAuthSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	52,  // 220: hashicorp.derrick.sdk.Registry.ConfigStruct:output_type -> hashicorp.derrick.sdk.Config.StructResp
+	105, // 221: hashicorp.derrick.sdk.Registry.Configure:output_type -> google.protobuf.Empty
+	55,  // 222: hashicorp.derrick.sdk.Registry.Documentation:output_type -> hashicorp.derrick.sdk.Config.Documentation
+	4,   // 223: hashicorp.derrick.sdk.Registry.PushSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	94,  // 224: hashicorp.derrick.sdk.Registry.Push:output_type -> hashicorp.derrick.sdk.Push.Resp
+	4,   // 225: hashicorp.derrick.sdk.Registry.AccessSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	95,  // 226: hashicorp.derrick.sdk.Registry.Access:output_type -> hashicorp.derrick.sdk.Access.Resp
+	8,   // 227: hashicorp.derrick.sdk.ReleaseManager.IsAuthenticator:output_type -> hashicorp.derrick.sdk.ImplementsResp
+	59,  // 228: hashicorp.derrick.sdk.ReleaseManager.Auth:output_type -> hashicorp.derrick.sdk.Auth.AuthResponse
+	4,   // 229: hashicorp.derrick.sdk.ReleaseManager.AuthSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	105, // 230: hashicorp.derrick.sdk.ReleaseManager.ValidateAuth:output_type -> google.protobuf.Empty
+	4,   // 231: hashicorp.derrick.sdk.ReleaseManager.ValidateAuthSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	52,  // 232: hashicorp.derrick.sdk.ReleaseManager.ConfigStruct:output_type -> hashicorp.derrick.sdk.Config.StructResp
+	105, // 233: hashicorp.derrick.sdk.ReleaseManager.Configure:output_type -> google.protobuf.Empty
+	55,  // 234: hashicorp.derrick.sdk.ReleaseManager.Documentation:output_type -> hashicorp.derrick.sdk.Config.Documentation
+	8,   // 235: hashicorp.derrick.sdk.ReleaseManager.IsDestroyer:output_type -> hashicorp.derrick.sdk.ImplementsResp
+	4,   // 236: hashicorp.derrick.sdk.ReleaseManager.DestroySpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	93,  // 237: hashicorp.derrick.sdk.ReleaseManager.Destroy:output_type -> hashicorp.derrick.sdk.Destroy.Resp
+	8,   // 238: hashicorp.derrick.sdk.ReleaseManager.IsWorkspaceDestroyer:output_type -> hashicorp.derrick.sdk.ImplementsResp
+	4,   // 239: hashicorp.derrick.sdk.ReleaseManager.DestroyWorkspaceSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	105, // 240: hashicorp.derrick.sdk.ReleaseManager.DestroyWorkspace:output_type -> google.protobuf.Empty
+	4,   // 241: hashicorp.derrick.sdk.ReleaseManager.ReleaseSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	96,  // 242: hashicorp.derrick.sdk.ReleaseManager.Release:output_type -> hashicorp.derrick.sdk.Release.Resp
+	8,   // 243: hashicorp.derrick.sdk.ReleaseManager.IsStatus:output_type -> hashicorp.derrick.sdk.ImplementsResp
+	4,   // 244: hashicorp.derrick.sdk.ReleaseManager.StatusSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	11,  // 245: hashicorp.derrick.sdk.ReleaseManager.Status:output_type -> hashicorp.derrick.sdk.StatusReport
+	52,  // 246: hashicorp.derrick.sdk.ConfigSourcer.ConfigStruct:output_type -> hashicorp.derrick.sdk.Config.StructResp
+	105, // 247: hashicorp.derrick.sdk.ConfigSourcer.Configure:output_type -> google.protobuf.Empty
+	55,  // 248: hashicorp.derrick.sdk.ConfigSourcer.Documentation:output_type -> hashicorp.derrick.sdk.Config.Documentation
+	4,   // 249: hashicorp.derrick.sdk.ConfigSourcer.ReadSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	97,  // 250: hashicorp.derrick.sdk.ConfigSourcer.Read:output_type -> hashicorp.derrick.sdk.ConfigSource.ReadResponse
+	4,   // 251: hashicorp.derrick.sdk.ConfigSourcer.StopSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	105, // 252: hashicorp.derrick.sdk.ConfigSourcer.Stop:output_type -> google.protobuf.Empty
+	52,  // 253: hashicorp.derrick.sdk.TaskLauncher.ConfigStruct:output_type -> hashicorp.derrick.sdk.Config.StructResp
+	105, // 254: hashicorp.derrick.sdk.TaskLauncher.Configure:output_type -> google.protobuf.Empty
+	55,  // 255: hashicorp.derrick.sdk.TaskLauncher.Documentation:output_type -> hashicorp.derrick.sdk.Config.Documentation
+	4,   // 256: hashicorp.derrick.sdk.TaskLauncher.StartSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	4,   // 257: hashicorp.derrick.sdk.TaskLauncher.StopSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	4,   // 258: hashicorp.derrick.sdk.TaskLauncher.WatchSpec:output_type -> hashicorp.derrick.sdk.FuncSpec
+	99,  // 259: hashicorp.derrick.sdk.TaskLauncher.StartTask:output_type -> hashicorp.derrick.sdk.TaskLaunch.Resp
+	105, // 260: hashicorp.derrick.sdk.TaskLauncher.StopTask:output_type -> google.protobuf.Empty
+	100, // 261: hashicorp.derrick.sdk.TaskLauncher.WatchTask:output_type -> hashicorp.derrick.sdk.TaskWatch.Resp
 	165, // [165:262] is the sub-list for method output_type
 	68,  // [68:165] is the sub-list for method input_type
 	68,  // [68:68] is the sub-list for extension type_name

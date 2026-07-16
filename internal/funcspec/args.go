@@ -7,7 +7,7 @@ import (
 	"github.com/hashicorp/go-argmapper"
 	"github.com/hashicorp/opaqueany"
 
-	pb "github.com/hashicorp/waypoint-plugin-sdk/proto/gen"
+	pb "github.com/nomatronio/derrick-plugin-sdk/proto/gen"
 )
 
 // Args is a type that will be populated with all the expected args of

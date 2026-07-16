@@ -49,10 +49,10 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "waypoint": "waypoint"
+        "derrick": "derrick"
       }
     },
-    "waypoint": {
+    "derrick": {
       "inputs": {
         "flake-utils": "flake-utils_2",
         "nixpkgs": "nixpkgs"
@@ -61,13 +61,13 @@
         "lastModified": 1650980284,
         "narHash": "sha256-lZk6wd77+LwBwqhi19tn6IkjfORjmXOHdSAnrF2SLlo=",
         "owner": "hashicorp",
-        "repo": "waypoint",
+        "repo": "derrick",
         "rev": "3b57b19eadc68a0a358a1d4a7f9dad864121d134",
         "type": "github"
       },
       "original": {
         "owner": "hashicorp",
-        "repo": "waypoint",
+        "repo": "derrick",
         "type": "github"
       }
     }

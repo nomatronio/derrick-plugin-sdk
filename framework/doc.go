@@ -1,4 +1,4 @@
-// Package framework contains a high-level framework for writing Waypoint
+// Package framework contains a high-level framework for writing Derrick
 // plugins. The framework is split into sub-packages for specific functionality,
 // whereas this root package contains the highest-level functionality.
 //

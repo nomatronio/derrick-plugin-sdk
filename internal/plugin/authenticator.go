@@ -10,11 +10,11 @@ import (
 	"github.com/hashicorp/go-argmapper"
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-plugin"
-	"github.com/hashicorp/waypoint-plugin-sdk/component"
-	"github.com/hashicorp/waypoint-plugin-sdk/internal/funcspec"
-	"github.com/hashicorp/waypoint-plugin-sdk/internal/pluginargs"
-	"github.com/hashicorp/waypoint-plugin-sdk/internal/testproto"
-	pb "github.com/hashicorp/waypoint-plugin-sdk/proto/gen"
+	"github.com/nomatronio/derrick-plugin-sdk/component"
+	"github.com/nomatronio/derrick-plugin-sdk/internal/funcspec"
+	"github.com/nomatronio/derrick-plugin-sdk/internal/pluginargs"
+	"github.com/nomatronio/derrick-plugin-sdk/internal/testproto"
+	pb "github.com/nomatronio/derrick-plugin-sdk/proto/gen"
 )
 
 // authenticatorProtoClient is the interface implemented by all gRPC services that

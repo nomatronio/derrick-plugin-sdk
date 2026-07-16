@@ -10,14 +10,14 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	"github.com/hashicorp/waypoint-plugin-sdk/component"
-	"github.com/hashicorp/waypoint-plugin-sdk/datadir"
-	pluginexec "github.com/hashicorp/waypoint-plugin-sdk/internal/plugin/exec"
-	pluginlogs "github.com/hashicorp/waypoint-plugin-sdk/internal/plugin/logs"
-	pluginterminal "github.com/hashicorp/waypoint-plugin-sdk/internal/plugin/terminal"
-	"github.com/hashicorp/waypoint-plugin-sdk/internal/pluginargs"
-	pb "github.com/hashicorp/waypoint-plugin-sdk/proto/gen"
-	"github.com/hashicorp/waypoint-plugin-sdk/terminal"
+	"github.com/nomatronio/derrick-plugin-sdk/component"
+	"github.com/nomatronio/derrick-plugin-sdk/datadir"
+	pluginexec "github.com/nomatronio/derrick-plugin-sdk/internal/plugin/exec"
+	pluginlogs "github.com/nomatronio/derrick-plugin-sdk/internal/plugin/logs"
+	pluginterminal "github.com/nomatronio/derrick-plugin-sdk/internal/plugin/terminal"
+	"github.com/nomatronio/derrick-plugin-sdk/internal/pluginargs"
+	pb "github.com/nomatronio/derrick-plugin-sdk/proto/gen"
+	"github.com/nomatronio/derrick-plugin-sdk/terminal"
 )
 
 // All is the list of all mappers as raw function pointers.

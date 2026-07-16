@@ -17,9 +17,9 @@ import (
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-plugin"
 
-	"github.com/hashicorp/waypoint-plugin-sdk/internal-shared/protomappers"
-	sdkplugin "github.com/hashicorp/waypoint-plugin-sdk/internal/plugin"
-	"github.com/hashicorp/waypoint-plugin-sdk/internal/stdio"
+	"github.com/nomatronio/derrick-plugin-sdk/internal-shared/protomappers"
+	sdkplugin "github.com/nomatronio/derrick-plugin-sdk/internal/plugin"
+	"github.com/nomatronio/derrick-plugin-sdk/internal/stdio"
 )
 
 //go:generate sh -c "protoc -I`go list -m -f \"{{.Dir}}\" github.com/hashicorp/protostructure` -I`go list -m -f \"{{.Dir}}\" github.com/hashicorp/opaqueany` -I ./thirdparty/proto/api-common-protos -I proto/ proto/*.proto --go_out=proto/gen/ --go-grpc_out=proto/gen/"
@@ -181,7 +181,7 @@ func DebugServe(ctx context.Context, opts ...Option) (ReattachConfig, <-chan str
 }
 
 // Debug starts a debug server and controls its lifecycle, printing the
-// information needed for Waypoint to connect to the plugin to stdout.
+// information needed for Derrick to connect to the plugin to stdout.
 // os.Interrupt will be captured and used to stop the server.
 func Debug(ctx context.Context, pluginAddr string, opts ...Option) error {
 	ctx, cancel := context.WithCancel(ctx)
@@ -212,7 +212,7 @@ func Debug(ctx context.Context, pluginAddr string, opts ...Option) error {
 
 	reattachStr := string(reattachBytes)
 
-	fmt.Printf("Plugin started, to attach Waypoint set the WP_REATTACH_PLUGINS env var:\n\n")
+	fmt.Printf("Plugin started, to attach Derrick set the WP_REATTACH_PLUGINS env var:\n\n")
 	switch runtime.GOOS {
 	case "windows":
 		fmt.Printf("\tCommand Prompt:\tset \"WP_REATTACH_PLUGINS=%s\"\n", reattachStr)
@@ -229,7 +229,7 @@ func Debug(ctx context.Context, pluginAddr string, opts ...Option) error {
 	return nil
 }
 
-// ReattachConfig holds the information Waypoint needs to be able to attach
+// ReattachConfig holds the information Derrick needs to be able to attach
 // itself to a plugin process, so it can drive the process.
 type ReattachConfig struct {
 	Protocol        string

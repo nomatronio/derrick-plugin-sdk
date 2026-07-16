@@ -10,8 +10,8 @@ import (
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoregistry"
 
-	"github.com/hashicorp/waypoint-plugin-sdk/internal/funcspec"
-	pb "github.com/hashicorp/waypoint-plugin-sdk/proto/gen"
+	"github.com/nomatronio/derrick-plugin-sdk/internal/funcspec"
+	pb "github.com/nomatronio/derrick-plugin-sdk/proto/gen"
 )
 
 // callDynamicFunc calls a dynamic (mapper-based) function with the

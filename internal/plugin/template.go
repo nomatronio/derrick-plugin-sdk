@@ -10,7 +10,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"github.com/hashicorp/waypoint-plugin-sdk/component"
+	"github.com/nomatronio/derrick-plugin-sdk/component"
 )
 
 // templateData returns the template data for a result object. If v

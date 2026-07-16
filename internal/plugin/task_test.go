@@ -10,10 +10,10 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/hashicorp/waypoint-plugin-sdk/component"
-	"github.com/hashicorp/waypoint-plugin-sdk/component/mocks"
-	"github.com/hashicorp/waypoint-plugin-sdk/internal/testproto"
-	pb "github.com/hashicorp/waypoint-plugin-sdk/proto/gen"
+	"github.com/nomatronio/derrick-plugin-sdk/component"
+	"github.com/nomatronio/derrick-plugin-sdk/component/mocks"
+	"github.com/nomatronio/derrick-plugin-sdk/internal/testproto"
+	pb "github.com/nomatronio/derrick-plugin-sdk/proto/gen"
 )
 
 func TestTaskLauncherStart(t *testing.T) {

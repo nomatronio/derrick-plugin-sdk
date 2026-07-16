@@ -5,14 +5,14 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/hashicorp/waypoint-plugin-sdk/internal/testproto"
+	"github.com/nomatronio/derrick-plugin-sdk/internal/testproto"
 
-	pb "github.com/hashicorp/waypoint-plugin-sdk/proto/gen"
+	pb "github.com/nomatronio/derrick-plugin-sdk/proto/gen"
 
 	"github.com/stretchr/testify/require"
 	"google.golang.org/protobuf/proto"
 
-	sdkpb "github.com/hashicorp/waypoint-plugin-sdk/proto/gen"
+	sdkpb "github.com/nomatronio/derrick-plugin-sdk/proto/gen"
 )
 
 func TestResourceCreate_state(t *testing.T) {

@@ -3,8 +3,8 @@ package plugin
 import (
 	"testing"
 
-	"github.com/hashicorp/waypoint-plugin-sdk/component"
-	"github.com/hashicorp/waypoint-plugin-sdk/component/mocks"
+	"github.com/nomatronio/derrick-plugin-sdk/component"
+	"github.com/nomatronio/derrick-plugin-sdk/component/mocks"
 )
 
 func TestReleaseManagerDynamicFunc_validateAuth(t *testing.T) {

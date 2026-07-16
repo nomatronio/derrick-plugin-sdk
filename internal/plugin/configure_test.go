@@ -7,8 +7,8 @@ import (
 	"github.com/hashicorp/hcl/v2/hclparse"
 	"github.com/stretchr/testify/require"
 
-	"github.com/hashicorp/waypoint-plugin-sdk/component"
-	"github.com/hashicorp/waypoint-plugin-sdk/component/mocks"
+	"github.com/nomatronio/derrick-plugin-sdk/component"
+	"github.com/nomatronio/derrick-plugin-sdk/component/mocks"
 )
 
 // testConfigurable is a reusable helper that tests that a component implements
