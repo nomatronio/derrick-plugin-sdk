@@ -9,8 +9,8 @@ import (
 	"time"
 
 	"github.com/fatih/color"
-	"github.com/nomatronio/derrick-plugin-sdk/internal/pkg/spinner"
 	"github.com/morikuni/aec"
+	"github.com/nomatronio/derrick-plugin-sdk/internal/pkg/spinner"
 )
 
 const (
