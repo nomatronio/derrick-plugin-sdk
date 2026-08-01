@@ -21,7 +21,9 @@ jobs:
       - name: Install golangci-lint
         run: |
           curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b "$(go env GOPATH)/bin" v2.1.6
-      - run: golangci-lint run --disable-all --timeout 10m --enable gofmt --enable govet ./...
+      - run: |
+          test -z "$(gofmt -l -s $(git ls-files '*.go'))"
+          golangci-lint run --default=none --enable=govet ./...
 
   check-vendor:
     runs-on: ubuntu-latest
@@ -60,7 +62,9 @@ jobs:
       - name: Install protoc and plugins
         run: |
           curl -sSfL -o /tmp/protoc.zip https://github.com/protocolbuffers/protobuf/releases/download/v3.17.3/protoc-3.17.3-linux-x86_64.zip
-          sudo unzip -o /tmp/protoc.zip -d /usr/local
+          mkdir -p "$HOME/protoc"
+          unzip -o /tmp/protoc.zip -d "$HOME/protoc"
+          echo "$HOME/protoc/bin" >> "$GITHUB_PATH"
           go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.27.1
           go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2.0
       - run: make gen
