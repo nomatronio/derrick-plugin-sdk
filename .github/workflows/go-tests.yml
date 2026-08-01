@@ -22,7 +22,8 @@ jobs:
         run: |
           curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b "$(go env GOPATH)/bin" v2.1.6
       - run: |
-          test -z "$(gofmt -l -s $(git ls-files '*.go'))"
+          unformatted=$(git ls-files '*.go' | xargs gofmt -l -s)
+          test -z "$unformatted"
           golangci-lint run --default=none --enable=govet ./...
 
   check-vendor:
