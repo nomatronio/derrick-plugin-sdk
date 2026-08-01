@@ -18,13 +18,11 @@ jobs:
         with:
           go-version-file: .go-version
       - run: go mod download
-      - name: Install golangci-lint
+      - name: Check formatting and vet
         run: |
-          curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b "$(go env GOPATH)/bin" v2.1.6
-      - run: |
           unformatted=$(git ls-files '*.go' | xargs gofmt -l -s)
           test -z "$unformatted"
-          golangci-lint run --default=none --enable=govet ./...
+          go vet ./...
 
   check-vendor:
     runs-on: ubuntu-latest
